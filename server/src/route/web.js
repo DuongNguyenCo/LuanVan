@@ -1,10 +1,10 @@
 import express from "express";
-import { getAboutPage, getHomePage } from "../controllers/home.js";
+import homeController from "../controllers/home";
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-  router.get("/", getHomePage);
-  router.get("/about", getAboutPage);
+  router.get("/", homeController.getHomePage);
+  router.get("/about", homeController.getAboutPage);
   return app.use("/", router);
 };
 
