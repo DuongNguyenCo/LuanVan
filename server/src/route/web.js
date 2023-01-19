@@ -4,7 +4,7 @@ let router = express.Router();
 
 let initWebRoutes = (app) => {
   router.get("/", homeController.getHomePage);
-  router.get("/about", homeController.getAboutPage);
+  router.post("/post-candidate", homeController.postCandidate);
   return app.use("/", router);
 };
 

@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("listfavo", {
+    await queryInterface.createTable("listfavos", {
       idcandidate: {
         primaryKey: true,
         type: Sequelize.INTEGER,
@@ -22,6 +22,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("listfavo");
+    await queryInterface.dropTable("listfavos");
   },
 };

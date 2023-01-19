@@ -1,19 +1,16 @@
 import db from "../models/index.js";
+import CRUDService from "../services/CRUDservice";
 
 let getHomePage = async (req, res) => {
-  try {
-    let data = await db.User.findAll();
-    console.log(data);
-    return res.render("home.ejs", { data: JSON.stringify(data) });
-  } catch (err) {
-    console.log(err);
-  }
+  return res.render("home.ejs");
 };
-let getAboutPage = (req, res) => {
-  return res.render("about.ejs");
+
+let postCandidate = async (req, res) => {
+  await CRUDService.createNewCandidate(req.body);
+  return res.send("haha");
 };
 
 module.exports = {
   getHomePage: getHomePage,
-  getAboutPage: getAboutPage,
+  postCandidate: postCandidate,
 };
