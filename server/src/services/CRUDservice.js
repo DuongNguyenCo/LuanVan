@@ -11,7 +11,50 @@ let createNewCandidate = async (data) => {
         email: data.email,
         pass: hashPass,
       });
-      resolve("thanh cong");
+      let all = await db.candidate.findAll({ raw: true });
+      resolve(all);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+let getAllCandidate = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.candidate.findAll({ raw: true });
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+let getCandidateById = async (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.candidate.findOne({ where: { id: id }, raw: true });
+      if (data) resolve(data);
+      else resolve(null);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+let updateCandidate = async (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let candidate = await db.candidate.findOne({
+        where: { id: data.id },
+      });
+      if (candidate) {
+        candidate.name = data.name;
+        await candidate.save();
+        let all = await db.candidate.findAll({ raw: true });
+        resolve(all);
+      } else {
+        resolve(null);
+      }
     } catch (error) {
       reject(error);
     }
@@ -29,5 +72,8 @@ let hashPassword = (password) => {
   });
 };
 module.exports = {
-  createNewCandidate: createNewCandidate,
+  createNewCandidate,
+  getAllCandidate,
+  getCandidateById,
+  updateCandidate,
 };

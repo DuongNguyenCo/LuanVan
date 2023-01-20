@@ -21,8 +21,8 @@
   </head>
   <body>
     <div class="container">
-      <form action="/post-candidate" method="POST">
-        <div class="form-group">CREATE CANDIDATE</div>
+      <form action="/put-candidate" method="POST">
+        <div class="form-group">EDIT CANDIDATE</div>
         <div class="form-group">
           <label for="name">Name</label>
           <input
@@ -31,6 +31,7 @@
             id="name"
             placeholder="Your Name"
             name="name"
+            value="<%= data.name %>"
           />
         </div>
         <div class="form-group">
@@ -41,6 +42,7 @@
             id="email"
             placeholder="Your Email"
             name="email"
+            value="<%= data.email %>"
           />
         </div>
         <div class="form-group">
@@ -51,9 +53,17 @@
             id="password"
             placeholder="Your Password"
             name="password"
+            value="<%= data.pass %>"
           />
         </div>
-        <button type="submit" class="btn btn-primary">OK</button>
+        <input
+          type="text"
+          class="form-control"
+          name="id"
+          value="<%= data.id %>"
+          hidden
+        />
+        <button type="submit" class="btn btn-primary">SAVE</button>
       </form>
     </div>
   </body>
