@@ -8,6 +8,7 @@ let initWebRoutes = (app) => {
   router.post("/post-candidate", homeController.postCandidate);
   router.get("/edit-candidate", homeController.getEditCandidate);
   router.post("/put-candidate", homeController.putCandidate);
+  router.get("/delete-candidate", homeController.delCandidate);
   return app.use("/", router);
 };
 

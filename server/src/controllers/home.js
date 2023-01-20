@@ -22,9 +22,16 @@ let getEditCandidate = async (req, res) => {
 };
 
 let putCandidate = async (req, res) => {
-  let allUser = await CRUDService.updateCandidate(req.body);
+  let all = await CRUDService.updateCandidate(req.body);
   return res.render("get-candidate.ejs", {
-    data: allUser,
+    data: all,
+  });
+};
+
+let delCandidate = async (req, res) => {
+  let all = await CRUDService.deleteCandidate(req.query.id);
+  return res.render("get-candidate.ejs", {
+    data: all,
   });
 };
 
@@ -34,4 +41,5 @@ module.exports = {
   getCandidate,
   getEditCandidate,
   putCandidate,
+  delCandidate,
 };

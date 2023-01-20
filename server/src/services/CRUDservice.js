@@ -18,6 +18,7 @@ let createNewCandidate = async (data) => {
     }
   });
 };
+
 let getAllCandidate = async () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -61,6 +62,22 @@ let updateCandidate = async (data) => {
   });
 };
 
+let deleteCandidate = async (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await db.candidate.destroy({
+        where: {
+          id: id,
+        },
+      });
+      let all = await db.candidate.findAll({ raw: true });
+      resolve(all);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 let hashPassword = (password) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -76,4 +93,5 @@ module.exports = {
   getAllCandidate,
   getCandidateById,
   updateCandidate,
+  deleteCandidate,
 };
