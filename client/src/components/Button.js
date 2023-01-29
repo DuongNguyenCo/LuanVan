@@ -1,9 +1,7 @@
 function Button(prop) {
   console.log("button", prop.text);
   return (
-    <button
-      className={prop.className || "rounded border border-sky-500 w-2/12"}
-    >
+    <button className={"rounded border border-sky-500 " + prop.className}>
       {prop.text}
     </button>
   );

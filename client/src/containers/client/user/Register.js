@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button, Input, Nav } from "../../../components";
 import { path } from "../../../utils/constant";
-function Login() {
-  console.log("login 1");
+
+function Register() {
+  console.log("Register");
   return (
     <div className="w-1360 h-screen flex  mx-auto">
       <Nav type="null" />
@@ -21,9 +22,15 @@ function Login() {
           name="password"
           placeholder="Mật khẩu"
         />
-        <Button text="Đăng Nhập" className="w-full h-10 my-3" />
+        <Input
+          label="Xác nhận mật khẩu"
+          id="rePassword"
+          name="rePassword"
+          placeholder="Xác nhận mật khẩu"
+        />
+        <Button text="Đăng Ký" className="w-full h-10 my-3" />
         <p className="float-right">
-          Bạn chưa có tài khoản? <Link to={path.REGISTER}>Đăng ký!</Link>
+          bạn đã có tài khoản? <Link to={path.LOGIN}>Đăng nhập!</Link>
         </p>
       </div>
       <div className="border w-6/12 py-40">
@@ -40,4 +47,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

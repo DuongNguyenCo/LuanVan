@@ -1,7 +1,7 @@
 import samsung from "../assets/image/samsung.png";
 
 function DivHome() {
-  console.log("divHome");
+  console.log("divHomeBusiness");
   return (
     <div className="w-3/12 p-4">
       <div className="hover:border w-full flex flex-wrap justify-center">
