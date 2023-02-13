@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const language = require("./language");
 module.exports = (sequelize, DataTypes) => {
   class job extends Model {
     /**
@@ -9,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      job.belongsToMany(language, { through: "listlanguages" });
     }
   }
   job.init(

@@ -1,11 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import {
-  Detail,
+  DetailJ,
+  DetailB,
   Find,
   Home,
   List,
   Login,
   Register,
+  Apply,
 } from "./containers/client/user";
 import { path } from "./utils/constant";
 function App() {
@@ -17,7 +19,9 @@ function App() {
         <Route path={path.REGISTER} element={<Register />} />
         <Route path={path.FINDJOB} element={<Find />} />
         <Route path={path.LISTBUSINESS} element={<List />} />
-        <Route path={path.DETAIL} element={<Detail />} />
+        <Route path={path.DETAILJ} element={<DetailJ />} />
+        <Route path={path.DETAILB} element={<DetailB />} />
+        <Route path={path.APPLY} element={<Apply />} />
       </Routes>
     </div>
   );

@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       width: {
         1360: "1360px",
+        1024: "1024px",
         170: "170px",
         140: "140px",
         50: "50px",

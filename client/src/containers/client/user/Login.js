@@ -4,7 +4,7 @@ import { path } from "../../../utils/constant";
 function Login() {
   console.log("login 1");
   return (
-    <div className="w-1360 h-screen flex  mx-auto">
+    <div className="w-1360 h-screen flex mx-auto">
       <Nav type="null" />
       <div className="border w-6/12 p-32">
         <p className="mb-5">Chào mừng đến với DNCJOB</p>

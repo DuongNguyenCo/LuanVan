@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom";
-import { Button, Input, Nav } from "../../../components";
-import hinh from "../../../assets/image/logo.png";
-import { path } from "../../../utils/constant";
+import { Button, Input, Nav, DivFindJ } from "../../../components";
 
 function Findjob() {
   console.log("Findjob");
@@ -72,72 +69,11 @@ function Findjob() {
           </div>
         </div>
         <div className="w-9/12 grid grid-cols-2 gap-4">
-          <Link to={path.DETAIL}>
-            <div className="w-full border p-4 ">
-              <div className="w-full flex mb-2">
-                <Link className="w-2/12">
-                  <div className="w-full h-full flex items-center">
-                    <img
-                      src={hinh}
-                      alt="hinh"
-                      className="w-auto h-fit mx-auto"
-                    />
-                  </div>
-                </Link>
-                <div className="w-9/12 ml-3">
-                  <p>Tên công việc</p>
-                  <p>tên công ty</p>
-                </div>
-                <div className="w-1/12 text-center">0</div>
-              </div>
-              <div className="flex flex-wrap">
-                <div className="w-full">location</div>
-                <div className="w-full">salary</div>
-                <div></div>
-              </div>
-              <div className="flex">cập nhật 3 giờ trước</div>
-            </div>
-          </Link>
-          <div className="w-full border p-4 ">
-            <div className="w-full flex mb-2">
-              <Link className="w-2/12">
-                <div className="w-full h-full flex items-center">
-                  <img src={hinh} alt="hinh" className="w-auto h-fit mx-auto" />
-                </div>
-              </Link>
-              <div className="w-9/12 ml-3">
-                <p>Tên công việc</p>
-                <p>tên công ty</p>
-              </div>
-              <div className="w-1/12 text-center">0</div>
-            </div>
-            <div className="flex flex-wrap">
-              <div className="w-full">location</div>
-              <div className="w-full">salary</div>
-              <div></div>
-            </div>
-            <div className="flex">cập nhật 3 giờ trước</div>
-          </div>
-          <div className="w-full border p-4 ">
-            <div className="w-full flex mb-2">
-              <Link className="w-2/12">
-                <div className="w-full h-full flex items-center">
-                  <img src={hinh} alt="hinh" className="w-auto h-fit mx-auto" />
-                </div>
-              </Link>
-              <div className="w-9/12 ml-3">
-                <p>Tên công việc</p>
-                <p>tên công ty</p>
-              </div>
-              <div className="w-1/12 text-center">0</div>
-            </div>
-            <div className="flex flex-wrap">
-              <div className="w-full">location</div>
-              <div className="w-full">salary</div>
-              <div></div>
-            </div>
-            <div className="flex">cập nhật 3 giờ trước</div>
-          </div>
+          <DivFindJ />
+          <DivFindJ />
+          <DivFindJ />
+          <DivFindJ />
+          <DivFindJ />
         </div>
       </div>
     </div>

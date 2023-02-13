@@ -12,10 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   listfavo.init(
-    {
-      idcandidate: DataTypes.INTEGER,
-      idpost: DataTypes.INTEGER,
-    },
+    {},
     {
       sequelize,
       modelName: "listfavo",

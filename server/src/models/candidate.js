@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const post = require("./post");
 module.exports = (sequelize, DataTypes) => {
   class candidate extends Model {
     /**
@@ -9,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      candidate.belongsToMany(post, { through: "listfavos" });
     }
   }
   candidate.init(

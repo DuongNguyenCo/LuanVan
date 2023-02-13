@@ -4,5 +4,7 @@ export const path = {
   REGISTER: "/dang-ky",
   FINDJOB: "/tim-kiem-viec-lam",
   LISTBUSINESS: "/danh-sach-cong-viec",
-  DETAIL: "/chi-tiet-cong-viec",
+  DETAILJ: "/chi-tiet-cong-viec",
+  DETAILB: "/chi-tiet-doanh-nghiep",
+  APPLY: "/ung-tuyen",
 };

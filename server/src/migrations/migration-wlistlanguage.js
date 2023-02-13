@@ -1,14 +1,23 @@
 "use strict";
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("listfavos", {
-      idcandidate: {
+    await queryInterface.createTable("listlanguages", {
+      idjob: {
         primaryKey: true,
+        references: {
+          model: "jobs",
+          key: "id",
+        },
         type: Sequelize.INTEGER,
       },
-      idpost: {
+      idlanguage: {
         primaryKey: true,
+        references: {
+          model: "languages",
+          key: "id",
+        },
         type: Sequelize.INTEGER,
       },
       createdAt: {
@@ -22,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("listfavos");
+    await queryInterface.dropTable("listlanguages");
   },
 };
