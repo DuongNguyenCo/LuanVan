@@ -1,22 +1,24 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class listlanguage extends Model {
+  class Cv_Post extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here\
-    }
+    static associate(models) {}
   }
-  listlanguage.init(
-    {},
+  Cv_Post.init(
+    {
+      id_post: DataTypes.INTEGER,
+      id_cv: DataTypes.INTEGER,
+      status: DataTypes.BOOLEAN,
+    },
     {
       sequelize,
-      modelName: "listlanguage",
+      modelName: "Cv_Post",
     }
   );
-  return listlanguage;
+  return Cv_Post;
 };

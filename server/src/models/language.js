@@ -1,8 +1,8 @@
 "use strict";
 const { Model } = require("sequelize");
-const job = require("./job");
+const job = require("./Job");
 module.exports = (sequelize, DataTypes) => {
-  class language extends Model {
+  class Language extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -10,17 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      language.belongsToMany(job, { through: "listlanguages" });
     }
   }
-  language.init(
+  Language.init(
     {
       name: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "language",
+      modelName: "Language",
     }
   );
-  return language;
+  return Language;
 };
