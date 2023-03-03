@@ -10,22 +10,25 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       phone: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(10),
       },
       email: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       des: {
         type: Sequelize.TEXT,
       },
       pass: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      img: {
-        type: Sequelize.STRING,
+      url: {
+        type: Sequelize.TEXT,
       },
       street: {
         type: Sequelize.STRING,
@@ -50,6 +53,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("businesses");
+    await queryInterface.dropTable("Businesses");
   },
 };

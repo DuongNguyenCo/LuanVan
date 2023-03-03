@@ -1,5 +1,5 @@
 function Input(prop) {
-  console.log("input", prop.placeholder);
+  const { setValue, initValue } = prop;
   return (
     <div className={prop.className || " h-20 w-full"}>
       <label
@@ -20,8 +20,12 @@ function Input(prop) {
         name={prop.name}
         accept={prop.type === "file" ? prop.accept : undefined}
         onChange={(e) => {
-          return e.target.value;
+          setValue({
+            ...initValue,
+            [e.target.name]: e.target.value,
+          });
         }}
+        autoComplete="off"
       />
     </div>
   );

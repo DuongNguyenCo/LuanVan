@@ -9,17 +9,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      id_job_type: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       name: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       salary: {
-        type: Sequelize.FLOAT,
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       des: {
-        type: Sequelize.STRING,
-      },
-      idtypejob: {
-        type: Sequelize.INTEGER,
+        allowNull: false,
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,

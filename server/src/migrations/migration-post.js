@@ -9,10 +9,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      idBusiness: {
-        type: Sequelize.STRING,
+      id_business: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      id_job: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       createdAt: {

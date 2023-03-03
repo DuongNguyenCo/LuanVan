@@ -1,17 +1,21 @@
 import express from "express";
 import bodyParser from "body-parser";
-import viewEngine from "./config/viewEngine.js";
 import initWebRoutes from "./route/web.js";
 import connet from "./config/connectDB.js";
-// see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import cors from "cors";
 require("dotenv").config();
 
 let app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["POST", "GET", "PUT", "DELETE"],
+  })
+);
 //config
-viewEngine(app);
 initWebRoutes(app);
 
 connet();

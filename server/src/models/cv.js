@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cv.belongsTo(models.Candidate, {
-        foreignKey: "idCandidate",
-        targetKey: "id",
-        as: "CandiCv",
-      });
+      // Cv.belongsTo(models.Candidate, {
+      //   foreignKey: "id_candidate",
+      //   targetKey: "id_candidate",
+      //   as: "CandiCv",
+      // });
     }
   }
   Cv.init(

@@ -10,18 +10,23 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       status: {
+        defaultValue: false,
         type: Sequelize.BOOLEAN,
       },
-      iddiscount: {
+      id_discount: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
-      idtypeservice: {
+      id_type_service: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
-      idbusiness: {
+      id_business: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       createdAt: {

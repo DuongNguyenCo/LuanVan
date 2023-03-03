@@ -9,11 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Receipt.belongsTo(models.Business, {
-        foreignKey: "idBusiness",
-        targetKey: "id",
-        as: "BusiReceipt",
-      });
+      // Receipt.belongsTo(models.Business, {
+      //   foreignKey: "id_business",
+      //   targetKey: "id_business",
+      //   as: "BusiReceipt",
+      // });
+      // Receipt.belongsTo(models.Service, {
+      //   foreignKey: "id_type_service",
+      //   targetKey: "id_service",
+      //   as: "ServiceReceipt",
+      // });
     }
   }
   Receipt.init(

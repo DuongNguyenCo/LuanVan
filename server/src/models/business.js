@@ -2,20 +2,15 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Business extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      Business.hasMany(models.Post, {
-        foreignKey: "idBusiness",
-        as: "BusiPost",
-      });
-      Business.hasMany(models.Receipt, {
-        foreignKey: "idBusiness",
-        as: "BusiReceipt",
-      });
+      // Business.hasMany(models.Post, {
+      //   foreignKey: "id_business",
+      //   as: "BusiPost",
+      // });
+      // Business.hasMany(models.Receipt, {
+      //   foreignKey: "id_business",
+      //   as: "BusiReceipt",
+      // });
     }
   }
   Business.init(

@@ -2,28 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Services", {
-      id: {
+    await queryInterface.createTable("Cv_Posts", {
+      id_post: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      id_cv: {
         allowNull: false,
-        type: Sequelize.STRING,
-      },
-      price: {
-        allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      count_post: {
-        allowNull: false,
+      status: {
+        defaultValue: -1,
         type: Sequelize.INTEGER,
-      },
-      expire: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Services");
+    await queryInterface.dropTable("Cv_Posts");
   },
 };

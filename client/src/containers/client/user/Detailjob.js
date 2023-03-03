@@ -2,6 +2,9 @@ import { Button, Nav } from "../../../components";
 import hinh from "../../../assets/image/logo.png";
 import { Link } from "react-router-dom";
 import { path } from "../../../utils/constant";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as fullHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 function Detailjob() {
   return (
     <div className="w-1360 mx-auto">
@@ -16,7 +19,12 @@ function Detailjob() {
               </Link>
               <Button
                 className="w-1/12 h-8 text-center my-auto border-none"
-                text="<3"
+                text={
+                  <FontAwesomeIcon
+                    icon={false ? fullHeart : solidHeart}
+                    className="w-full h-full"
+                  />
+                }
               />
             </div>
           </div>

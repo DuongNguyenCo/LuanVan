@@ -1,7 +1,6 @@
 import { Button, Input, Nav, DivFindJ } from "../../../components";
 
 function Findjob() {
-  console.log("Findjob");
   return (
     <div className="w-1360 mx-auto">
       <Nav />

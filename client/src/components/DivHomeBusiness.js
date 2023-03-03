@@ -3,7 +3,6 @@ import samsung from "../assets/image/samsung.png";
 import { path } from "../utils/constant";
 
 function DivHome() {
-  console.log("divHomeBusiness");
   return (
     <Link to={path.DETAILB} className="w-3/12 p-4">
       <div className="hover:border w-full flex flex-wrap justify-center">

@@ -10,15 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Candidate.hasMany(models.Cv, {
-        foreignKey: "idCandidate",
-        as: "CandiCv",
-      });
-      Candidate.belongsToMany(models.Post, {
-        through: models.Candi_Post,
-        foreignKey: "idCandidate",
-        as: "favorite",
-      });
+      // Candidate.hasMany(models.Cv, {
+      //   foreignKey: "id_candidate",
+      //   as: "CandiCv",
+      // });
     }
   }
   Candidate.init(

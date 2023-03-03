@@ -1,8 +1,6 @@
 import { Nav, Header, Divbusiness, Divjob } from "../../../components";
 
 function Home() {
-  //test
-  console.log("Home1");
   return (
     <div className="w-1360 mx-auto">
       <Nav />

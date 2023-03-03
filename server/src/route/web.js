@@ -1,14 +1,22 @@
 import express from "express";
-import homeController from "../controllers/home";
+// import homeController from "../controllers/home";
+import userController from "../controllers/userController";
+import businessController from "../controllers/businessControllser";
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-  router.get("/", homeController.getHomePage);
-  router.get("/get-candidate", homeController.getCandidate);
-  router.post("/post-candidate", homeController.postCandidate);
-  router.get("/edit-candidate", homeController.getEditCandidate);
-  router.post("/put-candidate", homeController.putCandidate);
-  router.get("/delete-candidate", homeController.delCandidate);
+  //user
+  router.get("/api/user/get-by-id/:id", userController.getByID);
+  router.post("/api/user/login", userController.login);
+  router.post("/api/user/create", userController.create);
+  router.put("/api/user/update/", userController.update);
+  // router.delete("/api/user/delete/:id", userController.remove);
+
+  //business
+  router.get("/api/business/get-all", businessController.getAll);
+  router.get("/api/business/get-by-id/:id", businessController.getByID);
+  router.post("/api/business/create", businessController.create);
+  router.put("/api/business/update", businessController.update);
   return app.use("/", router);
 };
 

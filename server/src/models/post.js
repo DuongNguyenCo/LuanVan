@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.belongsTo(models.Business, {
-        foreignKey: "idBusiness",
-        targetKey: "id",
-        as: "BusiPost",
-      });
-      Post.belongsToMany(models.Candidate, {
-        through: models.Candi_Post,
-        foreignKey: "idPost",
-        as: "favorite",
-      });
+      // Post.belongsTo(models.Business, {
+      //   foreignKey: "idBusiness",
+      //   targetKey: "id",
+      //   as: "BusiPost",
+      // });
+      // Post.belongsToMany(models.Candidate, {
+      //   through: models.Candi_Post,
+      //   foreignKey: "idPost",
+      //   as: "favorite",
+      // });
     }
   }
   Post.init(

@@ -9,7 +9,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      idCandidate: {
+      id_candidate: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       file: {

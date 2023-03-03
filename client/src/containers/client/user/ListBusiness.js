@@ -1,6 +1,5 @@
 import { Nav, Input, Button, DivFindB } from "../../../components";
 function Listbusiness() {
-  console.log("Listbusiness");
   return (
     <div className="w-1360 mx-auto">
       <Nav />

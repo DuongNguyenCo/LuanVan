@@ -1,7 +1,6 @@
 import { Input, Button } from "./index";
 
 function Header() {
-  console.log("Header");
   return (
     <header className="w-full h-80 flex border border-sky-500 mt-70">
       <div className="mx-auto w-10/12 my-auto">

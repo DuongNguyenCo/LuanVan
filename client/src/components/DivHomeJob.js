@@ -3,7 +3,6 @@ import hinh from "../assets/image/logo.png";
 import { path } from "../utils/constant";
 
 function DivHomejob() {
-  console.log("divHomejob");
   return (
     <Link to={path.DETAILJ} className="w-4/12 p-4">
       <div className="hover:border w-full flex flex-wrap justify-center p-2">
