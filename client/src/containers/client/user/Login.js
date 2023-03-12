@@ -2,31 +2,25 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Input, Nav } from "../../../components";
 import { path } from "../../../utils/constant";
-import axios from "axios";
+import { loginUSer } from "../../../store/apiRequests";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const init = {
     email: "",
     pass: "",
   };
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState(init);
   const [err, setErr] = useState("");
 
   const login = async (e) => {
     e.preventDefault();
-    if (values.email !== "" && values.pass !== "") {
-      const res = await axios.post("/api/user/login", values);
-      if (res.data.errCode === 1) {
-        setErr(res.data.errMessage);
-      } else if (res.data.errCode === -1) {
-        setErr(res.data.errMessage);
-      } else {
-        navigate(path.HOME);
-      }
-    } else {
-      setErr("Missing information");
-    }
+    if (values.email !== "" && values.pass !== "")
+      loginUSer(values, dispatch, navigate, setErr);
+    else setErr("Missing information");
   };
 
   return (

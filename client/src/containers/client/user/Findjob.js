@@ -73,6 +73,11 @@ function Findjob() {
           <DivFindJ />
           <DivFindJ />
           <DivFindJ />
+          <DivFindJ />
+          <DivFindJ />
+          <DivFindJ />
+          <DivFindJ />
+          <DivFindJ />
         </div>
       </div>
     </div>

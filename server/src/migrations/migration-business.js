@@ -23,7 +23,7 @@ module.exports = {
       des: {
         type: Sequelize.TEXT,
       },
-      pass: {
+      password: {
         allowNull: false,
         type: Sequelize.STRING,
       },

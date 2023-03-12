@@ -2,18 +2,16 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Cv extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
-      // Cv.belongsTo(models.Candidate, {
-      //   foreignKey: "id_candidate",
-      //   targetKey: "id_candidate",
-      //   as: "CandiCv",
-      // });
+      Cv.belongsTo(models.Candidate, {
+        foreignKey: "id_candidate",
+        as: "candidate",
+      });
+      Cv.belongsToMany(models.Post, {
+        through: models.Cv_Post,
+        as: "apply",
+        foreignKey: "id_cv",
+      });
     }
   }
   Cv.init(

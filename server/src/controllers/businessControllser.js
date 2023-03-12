@@ -1,7 +1,7 @@
 import crudBusiness from "../services/CRUD_Business";
 
 let getAll = async (req, res) => {
-  let data = await crudBusiness.getAll();
+  let data = await crudBusiness.getAll(req.query.page);
   res.status(200).json(data);
 };
 

@@ -3,14 +3,17 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Business extends Model {
     static associate(models) {
-      // Business.hasMany(models.Post, {
-      //   foreignKey: "id_business",
-      //   as: "BusiPost",
-      // });
-      // Business.hasMany(models.Receipt, {
-      //   foreignKey: "id_business",
-      //   as: "BusiReceipt",
-      // });
+      Business.hasMany(models.Post, {
+        as: "post",
+      });
+      Business.hasMany(models.Receipt, {
+        as: "receipt",
+      });
+      Business.belongsToMany(models.Candidate, {
+        through: models.Candi_Busi,
+        as: "review",
+        foreignKey: "id_business",
+      });
     }
   }
   Business.init(
@@ -19,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING(10),
       email: DataTypes.STRING,
       des: DataTypes.TEXT,
-      pass: DataTypes.STRING,
+      password: DataTypes.STRING,
       url: DataTypes.TEXT,
       street: DataTypes.STRING,
       ward: DataTypes.STRING,

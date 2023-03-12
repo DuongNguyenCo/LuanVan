@@ -9,6 +9,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      id_discount: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      id_service: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      id_business: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       name: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -16,18 +28,6 @@ module.exports = {
       status: {
         defaultValue: false,
         type: Sequelize.BOOLEAN,
-      },
-      id_discount: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      id_type_service: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      id_business: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

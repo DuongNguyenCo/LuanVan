@@ -2,18 +2,18 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Candi_Post extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-    }
+    static associate(models) {}
   }
   Candi_Post.init(
     {
-      id_candidate: DataTypes.INTEGER,
-      id_post: DataTypes.INTEGER,
+      id_candidate: {
+        type: DataTypes.INTEGER,
+        references: { model: Candidate, key: "id " },
+      },
+      id_post: {
+        type: DataTypes.INTEGER,
+        references: { model: Post, key: "id " },
+      },
     },
     {
       sequelize,

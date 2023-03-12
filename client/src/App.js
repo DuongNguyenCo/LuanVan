@@ -17,9 +17,16 @@ import {
   CandidateB,
 } from "./containers/client/business";
 import { path } from "./utils/constant";
+import { useSelector } from "react-redux";
+import { Loading } from "./components";
+
 function App() {
+  const loading = useSelector((state) => state.check.loading);
+
   return (
     <div className="h-screen w-full">
+      {loading && <Loading />}
+
       <Routes>
         <Route path={path.HOME} element={<HomeC />} />
         <Route path={path.LOGIN} element={<Login />} />

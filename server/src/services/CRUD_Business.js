@@ -1,9 +1,11 @@
-import { raw } from "body-parser";
 import db from "../models/index";
 import { hashPassword } from "./CRUD_User";
-let getAll = () => {
+
+let getAll = (page = 1) => {
   return new Promise(async (resolve, reject) => {
     try {
+      page = page * 1;
+      const limit = 4;
       let data = await db.Business.findAll({
         attributes: [
           "id",
@@ -17,6 +19,8 @@ let getAll = () => {
           "district",
           "city",
         ],
+        limit: limit,
+        offset: (page - 1) * limit,
         raw: true,
       });
       resolve({

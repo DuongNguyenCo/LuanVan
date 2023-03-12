@@ -3,13 +3,14 @@ const { Model } = require("sequelize");
 const language = require("./Language");
 module.exports = (sequelize, DataTypes) => {
   class Job extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Job.hasOne(models.Typejob);
+      Job.belongsTo(models.Post, { foreignKey: "id_job" });
+      Job.belongsToMany(models.Language, {
+        through: models.Job_Language,
+        as: "listLanguage",
+        foreignKey: "id_job",
+      });
     }
   }
   Job.init(
@@ -18,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       salary: DataTypes.INTEGER,
       des: DataTypes.TEXT,
+      quantity: DataTypes.INTEGER,
     },
     {
       sequelize,

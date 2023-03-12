@@ -6,3 +6,4 @@ export { default as DivFindJ } from "./DivFindJob";
 export { default as DivFindB } from "./DivFindBusiness";
 export { default as Input } from "./Input";
 export { default as Button } from "./Button";
+export { default as Loading } from "./Loading";

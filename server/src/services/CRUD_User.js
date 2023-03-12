@@ -13,13 +13,13 @@ let getByID = (id) => {
         const { pass, ...other } = data;
         resolve({
           errCode: 0,
-          errMesssage: "findOne Successfully",
+          errMessage: "findOne Successfully",
           other,
         });
       } else {
         resolve({
           errCode: -1,
-          errMesssage: "User not found",
+          errMessage: "User not found",
         });
       }
     } catch (error) {
@@ -44,13 +44,13 @@ let create = (user) => {
         const { pass, ...other } = data[0].dataValues;
         resolve({
           errCode: 0,
-          errMesssage: "Create new user successfully",
+          errMessage: "Create new user successfully",
           data: other,
         });
       } else {
         resolve({
           errCode: -1,
-          errMesssage: "Email already exists",
+          errMessage: "Email already exists",
         });
       }
     } catch (error) {
@@ -76,7 +76,7 @@ let login = (user) => {
           resolve({
             errCode: 0,
             errMessage: "Login Successfully",
-            data: data,
+            data: other,
             token: token,
           });
         } else {

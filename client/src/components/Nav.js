@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
 import { path } from "../utils/constant";
 import img from "../assets/image/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../store/userSlice";
+import { loading } from "../store/checkSilce";
 
 function Nav(prop) {
+  const { isLogin, last_name } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(loading());
+    dispatch(logoutUser());
+  };
   return (
     <nav className="h-70 w-1360 flex border border-sky-500 fixed top-0">
       <Link to={path.HOME}>
@@ -51,9 +61,26 @@ function Nav(prop) {
             <Link to={path.BLOGIN}>
               <div className="leading-70 px-2">DÀNH CHO NHÀ TUYỂN DỤNG</div>
             </Link>
-            <Link to={path.LOGIN} className="leading-70 px-2 ">
-              ĐĂNG NHẬP
-            </Link>
+            {isLogin ? (
+              <div className="leading-70 px-2 relative group cursor-pointer">
+                Chào {last_name} !
+                <div className="absolute px-2 w-full hidden group-hover:block">
+                  <p className="h-10 leading-10 cursor-pointer">Thông tin</p>
+                  <p className="h-10 leading-10 cursor-pointer">Hoạt động</p>
+                  <p className="h-10 leading-10 cursor-pointer">Quản lý CV</p>
+                  <p
+                    className="h-10 leading-10 cursor-pointer"
+                    onClick={handleLogout}
+                  >
+                    Đăng xuất
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <Link to={path.LOGIN} className="leading-70 px-2 ">
+                ĐĂNG NHẬP
+              </Link>
+            )}
           </div>
         </div>
       )}
