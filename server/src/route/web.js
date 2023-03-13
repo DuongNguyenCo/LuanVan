@@ -3,6 +3,7 @@ import express from "express";
 import userController from "../controllers/userController";
 import businessController from "../controllers/businessControllser";
 import postController from "../controllers/postController";
+import jobController from "../controllers/jobController";
 let router = express.Router();
 
 let initWebRoutes = (app) => {
@@ -24,6 +25,9 @@ let initWebRoutes = (app) => {
 
   //post
   router.get("/api/post/get-all", postController.getAll);
+
+  //job
+  router.post("/api/job/create", jobController.create);
   return app.use("/", router);
 };
 

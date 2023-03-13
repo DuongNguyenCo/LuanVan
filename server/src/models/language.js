@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Job_Language,
         as: "listLanguage",
         foreignKey: "id_language",
+        onDelete: "cascade",
+        onUpdate: "cascade",
       });
     }
   }

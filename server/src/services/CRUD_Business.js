@@ -63,7 +63,7 @@ let create = (busienss) => {
         where: { email: busienss?.email },
         defaults: {
           name: busienss?.name,
-          pass: busienss?.pass && (await hashPassword(busienss.pass)),
+          password: busienss?.pass && (await hashPassword(busienss.pass)),
         },
       });
       if (data[1]) {

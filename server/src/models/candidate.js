@@ -6,16 +6,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Candidate.hasMany(models.Cv, {
         as: "Cv",
+        onDelete: "cascade",
+        onUpdate: "cascade",
       });
       Candidate.belongsToMany(models.Business, {
         through: models.Candi_Busi,
         as: "review",
         foreignKey: "id_candidate",
+        onDelete: "cascade",
+        onUpdate: "cascade",
       });
       Candidate.belongsToMany(models.Post, {
         through: models.Candi_Post,
         as: "favorite",
-        targetKey: "id_candidate",
+        foreignKey: "id_candidate",
+        onDelete: "cascade",
+        onUpdate: "cascade",
       });
     }
   }

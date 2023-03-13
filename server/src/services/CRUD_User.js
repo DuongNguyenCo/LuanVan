@@ -36,7 +36,7 @@ let create = (user) => {
         defaults: {
           first_name: user?.first_name,
           last_name: user?.last_name,
-          pass: user?.pass && (await hashPassword(user.pass)),
+          password: user?.pass && (await hashPassword(user.pass)),
         },
         raw: true,
       });

@@ -8,16 +8,17 @@ module.exports = (sequelize, DataTypes) => {
     {
       id_job: {
         type: DataTypes.INTEGER,
-        references: { model: Job, key: "id" },
+        references: { model: "Job", key: "id" },
       },
       id_language: {
         type: DataTypes.INTEGER,
-        references: { model: Language, key: "id" },
+        references: { model: "Language", key: "id" },
       },
     },
     {
       sequelize,
       modelName: "Job_Language",
+      name: {},
     }
   );
   return Job_Language;

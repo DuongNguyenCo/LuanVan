@@ -8,11 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       id_post: {
         type: DataTypes.INTEGER,
-        references: { model: Post, key: "id" },
+        references: { model: "Post", key: "id" },
       },
       id_cv: {
         type: DataTypes.INTEGER,
-        references: { model: Cv, key: "id" },
+        references: { model: "Cv", key: "id" },
       },
       status: DataTypes.INTEGER,
     },

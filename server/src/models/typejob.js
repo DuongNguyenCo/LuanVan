@@ -3,7 +3,11 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Typejob extends Model {
     static associate(models) {
-      Typejob.belongsToMany(models.Job, { foreignKey: "id_job_type" });
+      Typejob.hasMany(models.Job, {
+        foreignKey: "id_job_type",
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      });
     }
   }
   Typejob.init(
