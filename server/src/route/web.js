@@ -25,6 +25,7 @@ let initWebRoutes = (app) => {
 
   //post
   router.get("/api/post/get-all", postController.getAll);
+  router.post("/api/post/create", postController.create);
 
   //job
   router.post("/api/job/create", jobController.create);

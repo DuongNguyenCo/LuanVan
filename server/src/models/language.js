@@ -6,10 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Language.belongsToMany(models.Job, {
         through: models.Job_Language,
-        as: "listLanguage",
         foreignKey: "id_language",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
     }
   }

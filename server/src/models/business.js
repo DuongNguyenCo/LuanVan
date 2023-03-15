@@ -4,21 +4,14 @@ module.exports = (sequelize, DataTypes) => {
   class Business extends Model {
     static associate(models) {
       Business.hasMany(models.Post, {
-        as: "post",
-        onDelete: "cascade",
-        onUpdate: "cascade",
+        foreignKey: "id_business",
       });
       Business.hasMany(models.Receipt, {
         as: "receipt",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
       Business.belongsToMany(models.Candidate, {
         through: models.Candi_Busi,
-        as: "review",
         foreignKey: "id_business",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
     }
   }

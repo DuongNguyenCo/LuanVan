@@ -5,21 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Receipt.belongsTo(models.Business, {
         foreignKey: "id_business",
-        as: "business",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
       Receipt.belongsTo(models.Service, {
         foreignKey: "id_service",
-        as: "service",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
       Receipt.belongsTo(models.Discount, {
         foreignKey: "id_discount",
-        as: "discount",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
     }
   }

@@ -3,11 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Service extends Model {
     static associate(models) {
-      Service.hasMany(models.Receipt, {
-        as: "receipt",
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      });
+      Service.hasMany(models.Receipt, {});
     }
   }
   Service.init(

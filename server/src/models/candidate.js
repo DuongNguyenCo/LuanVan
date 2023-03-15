@@ -4,24 +4,14 @@ const post = require("./Post");
 module.exports = (sequelize, DataTypes) => {
   class Candidate extends Model {
     static associate(models) {
-      Candidate.hasMany(models.Cv, {
-        as: "Cv",
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      });
+      Candidate.hasMany(models.Cv, {});
       Candidate.belongsToMany(models.Business, {
         through: models.Candi_Busi,
-        as: "review",
         foreignKey: "id_candidate",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
       Candidate.belongsToMany(models.Post, {
         through: models.Candi_Post,
-        as: "favorite",
         foreignKey: "id_candidate",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
     }
   }

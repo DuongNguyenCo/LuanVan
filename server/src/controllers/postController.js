@@ -5,6 +5,12 @@ let getAll = async (req, res) => {
   res.status(200).json(data);
 };
 
+let create = async (req, res) => {
+  let data = await crudPost.create(req.body);
+  res.status(200).json(data);
+};
+
 module.exports = {
   getAll,
+  create,
 };

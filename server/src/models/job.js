@@ -6,16 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Job.belongsTo(models.Typejob, {
         foreignKey: "id_job_type",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
-      Job.belongsTo(models.Post, { foreignKey: "id_job", as: "post" });
+      Job.hasOne(models.Post, { foreignKey: "id_job" });
       Job.belongsToMany(models.Language, {
         through: models.Job_Language,
-        as: "listLanguage",
         foreignKey: "id_job",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
     }
   }

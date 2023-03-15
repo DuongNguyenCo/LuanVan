@@ -3,11 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Discount extends Model {
     static associate(models) {
-      Discount.hasMany(models.Receipt, {
-        as: "receipt",
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      });
+      Discount.hasMany(models.Receipt, {});
     }
   }
   Discount.init(

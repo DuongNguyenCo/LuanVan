@@ -5,8 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Typejob.hasMany(models.Job, {
         foreignKey: "id_job_type",
-        onDelete: "cascade",
-        onUpdate: "cascade",
       });
     }
   }
