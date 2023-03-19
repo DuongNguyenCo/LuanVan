@@ -1,5 +1,6 @@
 function Input(prop) {
   const { setValue, initValue } = prop;
+
   return (
     <div className={prop.className || " h-20 w-full"}>
       <label

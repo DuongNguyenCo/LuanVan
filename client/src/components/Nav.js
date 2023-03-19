@@ -14,7 +14,7 @@ function Nav(prop) {
     dispatch(logoutUser());
   };
   return (
-    <nav className="h-70 w-1360 flex border border-sky-500 fixed top-0">
+    <nav className="h-70 w-1360 flex border border-sky-500 fixed top-0 bg-red-500 z-10">
       <Link to={path.HOME}>
         <img className="h-full" src={img} alt="logo cong ty" />
       </Link>
@@ -36,7 +36,7 @@ function Nav(prop) {
           </div>
 
           <div className="flex justify-end w-6/12">
-            <Link>
+            <Link to={path.BPOST}>
               <div className="leading-70 px-2">Đăng tin tuyển dụng</div>
             </Link>
             <Link>

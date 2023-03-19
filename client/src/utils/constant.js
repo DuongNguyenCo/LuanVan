@@ -13,4 +13,5 @@ export const path = {
   BJOB: "/business/viec-lam",
   BCANDIDATE: "/busiess/ung-vien",
   BRECEIPT: "/business/don-hang",
+  BPOST: "/business/dang-tin",
 };

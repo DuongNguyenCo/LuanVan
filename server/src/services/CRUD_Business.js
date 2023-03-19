@@ -36,9 +36,14 @@ let getAll = (page = 1) => {
 let getByID = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Business.findOne({ where: { id: id }, raw: true });
+      let data = await db.Business.findOne({
+        include: [{ model: db.Service }],
+        where: { id: id },
+        raw: true,
+        nest: true,
+      });
       if (data) {
-        const { pass, ...other } = data;
+        const { password, ...other } = data;
         resolve({
           errCode: 0,
           errMessage: "findOne Successfully",
@@ -62,6 +67,7 @@ let create = (busienss) => {
       let data = await db.Business.findOrCreate({
         where: { email: busienss?.email },
         defaults: {
+          id_service: 1,
           name: busienss?.name,
           password: busienss?.pass && (await hashPassword(busienss.pass)),
         },

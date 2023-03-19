@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Service extends Model {
     static associate(models) {
       Service.hasMany(models.Receipt, {});
+      Service.hasMany(models.Business, { foreignKey: "id_service" });
     }
   }
   Service.init(
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       price: DataTypes.INTEGER,
       count_post: DataTypes.INTEGER,
-      expire: DataTypes.DATE,
+      expire: DataTypes.INTEGER,
     },
     {
       sequelize,

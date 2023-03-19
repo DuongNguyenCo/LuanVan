@@ -23,11 +23,16 @@ let getAll = () => {
 let create = (post) => {
   return new Promise(async (resolve, reject) => {
     try {
+      const time = new Date();
+      const date = new Date(time.getTime() + 14 * 24 * 60 * 60 * 1000);
       let data = await db.Post.findOrCreate({
         where: {
           id_job: post.idJob,
           id_business: post.idBusiness,
           name: post.name,
+        },
+        defaults: {
+          expire: date,
         },
       });
       if (data[1]) {

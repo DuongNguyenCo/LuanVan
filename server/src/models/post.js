@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       id_business: DataTypes.INTEGER,
       id_job: DataTypes.INTEGER,
       name: DataTypes.STRING,
+      expire: DataTypes.DATE,
     },
     {
       sequelize,

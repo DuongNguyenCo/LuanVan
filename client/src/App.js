@@ -15,6 +15,7 @@ import {
   JobB,
   Receipt,
   CandidateB,
+  PostB,
 } from "./containers/client/business";
 import { path } from "./utils/constant";
 import { useSelector } from "react-redux";
@@ -42,6 +43,7 @@ function App() {
         <Route path={path.BJOB} element={<JobB />} />
         <Route path={path.BRECEIPT} element={<Receipt />} />
         <Route path={path.BCANDIDATE} element={<CandidateB />} />
+        <Route path={path.BPOST} element={<PostB />} />
       </Routes>
     </div>
   );

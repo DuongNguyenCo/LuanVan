@@ -13,20 +13,23 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Candi_Busi,
         foreignKey: "id_business",
       });
+      Business.belongsTo(models.Service, { foreignKey: "id_service" });
     }
   }
   Business.init(
     {
+      id_service: DataTypes.INTEGER,
       name: DataTypes.STRING,
       phone: DataTypes.STRING(10),
       email: DataTypes.STRING,
       des: DataTypes.TEXT,
-      password: DataTypes.STRING,
+      benefit: DataTypes.TEXT,
       url: DataTypes.TEXT,
       street: DataTypes.STRING,
       ward: DataTypes.STRING,
       district: DataTypes.STRING,
       city: DataTypes.STRING,
+      password: DataTypes.STRING,
     },
     {
       sequelize,

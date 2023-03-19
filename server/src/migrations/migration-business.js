@@ -3,10 +3,26 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Businesses", {
+      // id_service: DataTypes.INTEGER,
+      // name: DataTypes.STRING,
+      // phone: DataTypes.STRING(10),
+      // email: DataTypes.STRING,
+      // des: DataTypes.TEXT,
+      // benefit: DataTypes.TEXT,
+      // url: DataTypes.TEXT,
+      // street: DataTypes.STRING,
+      // ward: DataTypes.STRING,
+      // district: DataTypes.STRING,
+      // city: DataTypes.STRING,
+      // password: DataTypes.STRING,
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      id_service: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       name: {
@@ -23,9 +39,8 @@ module.exports = {
       des: {
         type: Sequelize.TEXT,
       },
-      password: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      benefit: {
+        type: Sequelize.TEXT,
       },
       url: {
         type: Sequelize.TEXT,
@@ -40,6 +55,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       city: {
+        type: Sequelize.STRING,
+      },
+      password: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       createdAt: {
