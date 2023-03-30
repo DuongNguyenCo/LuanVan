@@ -3,18 +3,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Businesses", {
-      // id_service: DataTypes.INTEGER,
-      // name: DataTypes.STRING,
-      // phone: DataTypes.STRING(10),
-      // email: DataTypes.STRING,
-      // des: DataTypes.TEXT,
-      // benefit: DataTypes.TEXT,
-      // url: DataTypes.TEXT,
-      // street: DataTypes.STRING,
-      // ward: DataTypes.STRING,
-      // district: DataTypes.STRING,
-      // city: DataTypes.STRING,
-      // password: DataTypes.STRING,
       id: {
         allowNull: false,
         autoIncrement: true,

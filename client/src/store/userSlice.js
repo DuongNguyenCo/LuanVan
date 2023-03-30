@@ -11,7 +11,6 @@ export const userSlile = createSlice({
   },
   reducers: {
     registerSuccess: (state, action) => {
-      console.log("redux", action.payload);
       state.isLogin = true;
       state.first_name = action.payload.data.first_name;
       state.last_name = action.payload.data.last_name;

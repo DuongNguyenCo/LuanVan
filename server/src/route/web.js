@@ -1,9 +1,12 @@
 import express from "express";
-// import homeController from "../controllers/home";
 import userController from "../controllers/userController";
 import businessController from "../controllers/businessControllser";
 import postController from "../controllers/postController";
 import jobController from "../controllers/jobController";
+import languageController from "../controllers/languegController";
+import typejobController from "../controllers/typejobController";
+import addressController from "../controllers/addressController";
+
 let router = express.Router();
 
 let initWebRoutes = (app) => {
@@ -20,6 +23,7 @@ let initWebRoutes = (app) => {
   //business
   router.get("/api/business/get-all", businessController.getAll);
   router.get("/api/business/get-by-id/:id", businessController.getByID);
+  router.post("/api/business/login", businessController.login);
   router.post("/api/business/create", businessController.create);
   router.put("/api/business/update", businessController.update);
 
@@ -29,6 +33,16 @@ let initWebRoutes = (app) => {
 
   //job
   router.post("/api/job/create", jobController.create);
+
+  //language
+  router.get("/api/language/get-all", languageController.getAll);
+
+  //typeJob
+  router.get("/api/type-job/get-all", typejobController.getAll);
+
+  //address
+  router.post("/api/address/create", addressController.create);
+  router.get("/api/address/get-all/:id", addressController.getAll);
   return app.use("/", router);
 };
 

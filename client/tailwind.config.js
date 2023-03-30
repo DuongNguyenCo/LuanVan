@@ -35,6 +35,10 @@ module.exports = {
         170: "170px",
         50: "50px",
       },
+      colors: {
+        step: "#CBCBCB",
+        stepActive: "#67B7DC",
+      },
     },
   },
   plugins: [],

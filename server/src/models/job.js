@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Job_Language,
         foreignKey: "id_job",
       });
+      Job.belongsToMany(models.Address, {
+        through: models.Job_Address,
+        foreignKey: "id_job",
+      });
     }
   }
   Job.init(
@@ -20,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       salary: DataTypes.INTEGER,
       des: DataTypes.TEXT,
+      request: DataTypes.TEXT,
       quantity: DataTypes.INTEGER,
     },
     {

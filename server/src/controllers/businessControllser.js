@@ -20,9 +20,15 @@ let update = async (req, res) => {
   res.status(200).json(data);
 };
 
+let login = async (req, res) => {
+  let data = await crudBusiness.login(req.body);
+  res.status(200).json(data);
+};
+
 module.exports = {
   getAll,
   getByID,
   create,
   update,
+  login,
 };

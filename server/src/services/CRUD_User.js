@@ -10,11 +10,11 @@ let getByID = (id) => {
     try {
       let data = await db.Candidate.findOne({ where: { id: id }, raw: true });
       if (data) {
-        const { pass, ...other } = data;
+        const { password, ...other } = data;
         resolve({
           errCode: 0,
           errMessage: "findOne Successfully",
-          other,
+          data: other,
         });
       } else {
         resolve({
@@ -41,7 +41,7 @@ let create = (user) => {
         raw: true,
       });
       if (data[1]) {
-        const { pass, ...other } = data[0].dataValues;
+        const { password, ...other } = data[0].dataValues;
         resolve({
           errCode: 0,
           errMessage: "Create new user successfully",
@@ -67,9 +67,9 @@ let login = (user) => {
         raw: true,
       });
       if (data) {
-        let checkPass = bcrypt.compareSync(user.pass, data.pass);
+        let checkPass = bcrypt.compareSync(user.pass, data.password);
         if (checkPass) {
-          const { pass, ...other } = data;
+          const { password, ...other } = data;
           const token = jwt.sign({ user: other }, process.env.TOKEN_KEY, {
             expiresIn: "2h",
           });
@@ -104,6 +104,8 @@ let update = (user) => {
         where: { email: user.email },
         raw: true,
       });
+
+      console.log("data: ", data);
       if (data) {
         let dataNew = await db.Candidate.update(
           {
@@ -112,6 +114,7 @@ let update = (user) => {
           },
           { where: { email: user.email }, raw: true }
         );
+        console.log("dataNew: ", dataNew[0]);
         if (dataNew[0] > 0) {
           resolve({
             errCode: 0,

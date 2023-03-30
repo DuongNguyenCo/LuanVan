@@ -1,5 +1,45 @@
 import db from "../models/index";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { hashPassword } from "./CRUD_User";
+
+let login = (business) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.Business.findOne({
+        where: { email: business.email },
+        raw: true,
+      });
+      if (data) {
+        let checkPass = bcrypt.compareSync(business.password, data.password);
+        if (checkPass) {
+          const { password, ...other } = data;
+          const token = jwt.sign({ business: other }, process.env.TOKEN_KEY, {
+            expiresIn: "2h",
+          });
+          resolve({
+            errCode: 0,
+            errMessage: "Login Successfully",
+            data: other,
+            token: token,
+          });
+        } else {
+          resolve({
+            errCode: 1,
+            errMessage: "incorrect password",
+          });
+        }
+      } else {
+        resolve({
+          errCode: -1,
+          errMessage: "User not found",
+        });
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
 
 let getAll = (page = 1) => {
   return new Promise(async (resolve, reject) => {
@@ -73,9 +113,11 @@ let create = (busienss) => {
         },
       });
       if (data[1]) {
+        const { password, ...other } = data[0].dataValues;
         resolve({
           errCode: 0,
           errMessage: "Create successfully",
+          data: other,
         });
       } else {
         resolve({
@@ -127,4 +169,5 @@ module.exports = {
   getByID,
   create,
   update,
+  login,
 };

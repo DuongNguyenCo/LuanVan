@@ -10,6 +10,7 @@ export const path = {
 
   BUSINESS: "/business",
   BLOGIN: "/business/dang-nhap",
+  BREGISTER: "/business/dang-ký",
   BJOB: "/business/viec-lam",
   BCANDIDATE: "/busiess/ung-vien",
   BRECEIPT: "/business/don-hang",

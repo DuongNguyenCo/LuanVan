@@ -14,7 +14,7 @@ function Nav(prop) {
     dispatch(logoutUser());
   };
   return (
-    <nav className="h-70 w-1360 flex border border-sky-500 fixed top-0 bg-red-500 z-10">
+    <nav className="h-70 w-1360 flex border border-sky-500 fixed top-0 z-10">
       <Link to={path.HOME}>
         <img className="h-full" src={img} alt="logo cong ty" />
       </Link>

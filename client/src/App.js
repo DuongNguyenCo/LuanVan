@@ -12,6 +12,7 @@ import {
 import {
   HomeB,
   LoginB,
+  RegisterB,
   JobB,
   Receipt,
   CandidateB,
@@ -44,6 +45,7 @@ function App() {
         <Route path={path.BRECEIPT} element={<Receipt />} />
         <Route path={path.BCANDIDATE} element={<CandidateB />} />
         <Route path={path.BPOST} element={<PostB />} />
+        <Route path={path.BREGISTER} element={<RegisterB />} />
       </Routes>
     </div>
   );

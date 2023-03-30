@@ -25,6 +25,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      request: {
+        type: Sequelize.TEXT,
+      },
       quantity: {
         allowNull: false,
         type: Sequelize.INTEGER,

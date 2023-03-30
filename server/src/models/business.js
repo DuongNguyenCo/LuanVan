@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       Business.hasMany(models.Receipt, {
         as: "receipt",
       });
+      Business.hasMany(models.Address, {
+        foreignKey: "id_business",
+      });
       Business.belongsToMany(models.Candidate, {
         through: models.Candi_Busi,
         foreignKey: "id_business",
