@@ -26,7 +26,7 @@ function App() {
   const loading = useSelector((state) => state.check.loading);
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-full w-full">
       {loading && <Loading />}
 
       <Routes>

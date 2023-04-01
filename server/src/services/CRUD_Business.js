@@ -45,7 +45,7 @@ let getAll = (page = 1) => {
   return new Promise(async (resolve, reject) => {
     try {
       page = page * 1;
-      const limit = 4;
+      const limit = 5;
       let data = await db.Business.findAll({
         attributes: [
           "id",

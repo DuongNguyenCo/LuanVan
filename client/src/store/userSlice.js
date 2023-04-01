@@ -3,25 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlile = createSlice({
   name: "user",
   initialState: {
-    isLogin: false,
-    first_name: "",
-    last_name: "",
-    email: "",
-    errMsg: "",
+    candidate: null,
   },
   reducers: {
     registerSuccess: (state, action) => {
-      state.isLogin = true;
-      state.first_name = action.payload.data.first_name;
-      state.last_name = action.payload.data.last_name;
-      state.email = action.payload.data.email;
-      state.errMsg = "";
+      state.candidate = action.payload;
     },
     logoutUser: (state) => {
-      state.isLogin = false;
-      state.first_name = "";
-      state.last_name = "";
-      state.email = "";
+      state.candidate = null;
     },
   },
 });

@@ -76,8 +76,7 @@ let login = (user) => {
           resolve({
             errCode: 0,
             errMessage: "Login Successfully",
-            data: other,
-            token: token,
+            data: { other, token },
           });
         } else {
           resolve({

@@ -5,8 +5,12 @@ export const checkSlice = createSlice({
   initialState: {
     loading: false,
     error: false,
+    errMsg: "",
   },
   reducers: {
+    setMsg: (state, action) => {
+      state.errMsg = action.payload.errMsg;
+    },
     loading: (state) => {
       state.loading = true;
     },
@@ -20,5 +24,5 @@ export const checkSlice = createSlice({
   },
 });
 
-export const { loading, error, success } = checkSlice.actions;
+export const { loading, error, success, setMsg } = checkSlice.actions;
 export default checkSlice.reducer;

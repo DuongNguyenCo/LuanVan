@@ -30,18 +30,20 @@ function Register() {
     )
       if (values.pass === values.rePassword) {
         registerUser(values, dispatch, navigate, setErr);
-        console.log(err);
       } else setErr("Incorrect password");
     else setErr("Missing information");
   };
 
   return (
     <div className="w-1360 h-screen mx-auto flex justify-center">
+      <Nav type="null" />
       <div className="w-full flex">
-        <Nav type="null" />
-        <div className="w-6/12 p-32">
-          <p className="mb-5">Chào mừng đến với DNCJOB</p>
-          <Button className="w-full h-10 " text="Đăng nhập với google" />
+        <div className="w-6/12 pt-28 px-32">
+          <p className="mb-5 text-p">Chào mừng đến với DNCJOB</p>
+          <Button
+            className="w-full h-10 bg-button text-chu2"
+            text="Đăng nhập với google"
+          />
           <div className="align-center flex items-center mt-3 mb-1">
             <div className="h-1px w-full bg-slate-400"></div>
             <div className="mx-2 ">Hoặc</div>
@@ -49,6 +51,7 @@ function Register() {
           </div>
           <form onSubmit={register}>
             <Input
+              request={true}
               label="Họ"
               id="first_name"
               name="first_name"
@@ -57,6 +60,7 @@ function Register() {
               initValue={values}
             />
             <Input
+              request={true}
               label="Tên"
               id="last_name"
               name="last_name"
@@ -65,6 +69,7 @@ function Register() {
               initValue={values}
             />
             <Input
+              request={true}
               label="Email"
               id="email"
               name="email"
@@ -73,6 +78,7 @@ function Register() {
               initValue={values}
             />
             <Input
+              request={true}
               label="Mật khẩu"
               id="password"
               name="pass"
@@ -82,6 +88,7 @@ function Register() {
               initValue={values}
             />
             <Input
+              request={true}
               label="Xác nhận mật khẩu"
               id="rePassword"
               name="rePassword"
@@ -91,13 +98,19 @@ function Register() {
               initValue={values}
             />
             <p className="text-right text-red-600">{err}</p>
-            <Button text="Đăng Ký" className="w-full h-10 my-3" />
+            <Button
+              text="Đăng Ký"
+              className="w-full h-10 mt-3 bg-button text-chu2"
+            />
           </form>
-          <p className="float-right">
-            bạn đã có tài khoản? <Link to={path.LOGIN}>Đăng nhập!</Link>
-          </p>
+          <small className="float-right mt-1 text-span italic">
+            Bạn đã có tài khoản?{" "}
+            <Link to={path.LOGIN} className="text-link">
+              Đăng nhập!
+            </Link>
+          </small>
         </div>
-        <div className=" w-6/12 py-40">
+        <div className=" w-6/12 pt-40">
           <p>
             Sign in to get instant access to thousands of reviews and salary
             information

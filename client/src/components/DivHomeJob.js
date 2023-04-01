@@ -4,8 +4,8 @@ import { path } from "../utils/constant";
 
 function DivHomejob() {
   return (
-    <Link to={path.DETAILJ} className="w-4/12 p-4">
-      <div className="hover:border w-full flex flex-wrap justify-center p-2">
+    <Link to={path.DETAILJ} className="w-4/12 p-4 hover:border">
+      <div className=" w-full flex flex-wrap justify-center p-2 bg-chu2">
         <div className="w-full flex mb-2">
           <div className="w-2/12">
             <div className="w-full h-full flex items-center">

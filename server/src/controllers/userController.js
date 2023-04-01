@@ -19,6 +19,13 @@ let update = async (req, res) => {
 
 let login = async (req, res) => {
   let data = await crudUser.login(req.body);
+  console.log("data: ", data);
+  // res.cookie("refreshToken", data.data.token, {
+  //   httpOnly: true,
+  //   secure: false,
+  //   path: "/",
+  //   sameSite: "strict",
+  // });
   res.status(200).json(data);
 };
 

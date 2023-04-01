@@ -7,7 +7,8 @@ function Input(prop) {
         className={prop.label === undefined ? undefined : "mb-2 inline-block"}
         htmlFor={prop.id}
       >
-        {prop.label || undefined}
+        {prop.label || undefined}{" "}
+        {prop.request && <sup className="text-button">*</sup>}
       </label>
       <input
         id={prop.id}

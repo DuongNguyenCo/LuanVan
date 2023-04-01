@@ -14,7 +14,7 @@ export const registerUser = async (user, dispatch, navigate, setErr) => {
     if (res.data.errCode === 0) {
       console.log("axios", res.data);
       dispatch(success());
-      dispatch(registerSuccess(res.data));
+      dispatch(registerSuccess(res.data.data));
       navigate(path.HOME);
     } else {
       setErr(res.data.errMessage);
@@ -31,7 +31,7 @@ export const loginUSer = async (user, dispatch, navigate, setErr) => {
     const res = await axios.post("/api/user/login", user);
     if (res.data.errCode === 0) {
       dispatch(success());
-      dispatch(registerSuccess(res.data));
+      dispatch(registerSuccess(res.data.data.other));
       navigate(path.HOME);
     } else {
       setErr(res.data.errMessage);
@@ -48,7 +48,7 @@ export const registerBusiness = async (busi, dispatch, navigate, setErr) => {
     const res = await axios.post("/api/business/create", busi);
     if (res.data.errCode === 0) {
       dispatch(success());
-      dispatch(registerB(res.data));
+      dispatch(registerB(res.data.data));
       navigate(path.BUSINESS);
     } else {
       setErr(res.data.errMessage);
@@ -64,7 +64,7 @@ export const loginBusiness = async (business, dispatch, navigate, setErr) => {
     const res = await axios.post("/api/business/login", business);
     if (res.data.errCode === 0) {
       dispatch(success());
-      dispatch(registerB(res.data));
+      dispatch(registerB(res.data.data));
       navigate(path.BUSINESS);
     } else {
       setErr(res.data.errMessage);
@@ -98,42 +98,41 @@ export const getBusiness = async (setData, page = 1) => {
   } catch (err) {}
 };
 
-export const getLanguage = async (dispatch) => {
-  try {
-    const data = await axios.get(`/api/language/get-all`);
-    if (data.data.errCode === 0) {
-      dispatch(setListLanguage(data.data.data));
-    }
-  } catch (err) {
-    dispatch(error());
-  }
-};
+// export const getLanguage = async (dispatch) => {
+//   try {
+//     const data = await axios.get(`/api/language/get-all`);
+//     if (data.data.errCode === 0) {
+//       dispatch(setListLanguage(data.data.data));
+//     }
+//   } catch (err) {
+//     dispatch(error());
+//   }
+// };
 
-export const getAddress = async (id, dispatch) => {
-  try {
-    const data = await axios.get(`/api/address/get-all/${id}`);
-    if (data.data.errCode === 0) {
-      dispatch(setListAddress(data.data.data));
-    }
-  } catch (err) {
-    dispatch(error());
-  }
-};
+// export const getAddress = async (id, dispatch) => {
+//   try {
+//     const data = await axios.get(`/api/address/get-all/${id}`);
+//     if (data.data.errCode === 0) {
+//       dispatch(setListAddress(data.data.data));
+//     }
+//   } catch (err) {
+//     dispatch(error());
+//   }
+// };
 
-export const getTypeJob = async (dispatch) => {
-  try {
-    const data = await axios.get(`/api/type-job/get-all`);
-    if (data.data.errCode === 0) {
-      dispatch(setTypejob(data.data.data));
-    }
-  } catch (err) {
-    dispatch(error());
-  }
-};
+// export const getTypeJob = async (dispatch) => {
+//   try {
+//     const data = await axios.get(`/api/type-job/get-all`);
+//     if (data.data.errCode === 0) {
+//       dispatch(setTypejob(data.data.data));
+//     }
+//   } catch (err) {
+//     dispatch(error());
+//   }
+// };
 
 export const getTest = async (dispatch, idBusiness) => {
   try {
-    // console.log(idBusiness);
     const data = await axios.get(`/api/type-job/get-all`);
     const data1 = await axios.get(`/api/address/get-all/${idBusiness}`);
     const data2 = await axios.get(`/api/language/get-all`);

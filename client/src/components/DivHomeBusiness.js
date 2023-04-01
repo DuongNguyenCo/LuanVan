@@ -4,8 +4,8 @@ import { path } from "../utils/constant";
 
 function DivHome(prop) {
   return (
-    <Link to={path.DETAILB} className="w-3/12 p-4">
-      <div className="hover:border w-full flex flex-wrap justify-center ">
+    <Link to={path.DETAILB} className="w-1/5 p-4 hover:border">
+      <div className=" w-full flex flex-wrap justify-center bg-chu2">
         <div className="w-170 h-170 mt-5 mb-3 flex items-center">
           <img
             src={samsung}

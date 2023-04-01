@@ -27,6 +27,9 @@ module.exports = {
       margin: {
         70: "70px",
       },
+      padding: {
+        70: "70px",
+      },
       maxWidth: {
         170: "170px",
         50: "50px",
@@ -38,6 +41,17 @@ module.exports = {
       colors: {
         step: "#CBCBCB",
         stepActive: "#67B7DC",
+        button: "rgb(234,30,48)",
+        chinh: "rgb(34,31,32)",
+        phu: "rgb(233,233,233)",
+        chu1: "rgb(155,154,154)",
+        chu2: "rgb(255,255,255)",
+        link: "#005aff",
+      },
+      fontSize: {
+        h1: "22px",
+        p: "20px",
+        span: "16px",
       },
     },
   },

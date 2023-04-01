@@ -2,10 +2,10 @@ import { Input, Button } from "./index";
 
 function Header() {
   return (
-    <header className="w-full h-80 flex border border-sky-500 mt-70">
-      <div className="mx-auto w-10/12 my-auto">
+    <header className="w-full h-96 flex pt-70">
+      <div className="m-auto w-10/12 ">
         <div>
-          <p className="text-3xl mb-14">
+          <p className="text-3xl mb-10 text-chu2">
             Đang có 1000 công việc tốt đang chờ bạn
           </p>
           <div className="flex">
@@ -21,7 +21,7 @@ function Header() {
               name="location"
               className="w-6/12 mr-3"
             />
-            <Button text="TÌM KIẾM" className="w-2/12" />
+            <Button text="TÌM KIẾM" className="w-2/12 bg-button text-chu2" />
           </div>
         </div>
       </div>
