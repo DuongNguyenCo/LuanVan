@@ -1,11 +1,26 @@
-import { Button, Input, Nav, DivFindJ } from "../../../components";
+import { Button, Input, Nav, DivFindJ, Footer } from "../../../components";
+import { useEffect, useState } from "react";
+import { getJob } from "../../../store/apiRequests";
+import { useNavigate } from "react-router-dom";
+import { getJobById } from "../../../store/apiRequests";
+import { useDispatch } from "react-redux";
 
 function Findjob() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [job, setJob] = useState();
+  const [page, setPage] = useState(1);
+  const handleChoose = (id) => {
+    getJobById(id, dispatch, navigate);
+  };
+  useEffect(() => {
+    getJob(setJob, page, 10);
+  }, [page]);
   return (
-    <>
+    <div className="relative">
       <Nav />
-      <div className="w-full">
-        <div className="w-1360 mx-auto pt-70">
+      <div className="w-full bg-phu pb-72">
+        <div className="w-1360 mx-auto pt-70 pb-5 bg-chu2 px-10">
           <div className="flex py-5 px-2 ">
             <Input
               id="search"
@@ -19,7 +34,7 @@ function Findjob() {
               name="location"
               className="w-4/12 mr-3"
             />
-            <Button text="TÌM KIẾM" className="w-2/12" />
+            <Button text="TÌM KIẾM" className="w-2/12 bg-button text-chu2" />
           </div>
           <div className="flex">
             <div className="w-3/12 pr-10">
@@ -70,21 +85,28 @@ function Findjob() {
               </div>
             </div>
             <div className="w-9/12 grid grid-cols-2 gap-4">
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
-              <DivFindJ />
+              {job?.map((e) => {
+                return (
+                  <DivFindJ
+                    key={e.id}
+                    id={e.id}
+                    url={e.Business.url}
+                    nameBusiness={e.Business.name}
+                    nameJob={e.Job.name}
+                    listLanguage={e.Job.Languages}
+                    listLocation={e.Job.Addresses}
+                    salary={e.Job.salary}
+                    create={e.createdAt}
+                    onClick={handleChoose}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 

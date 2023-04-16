@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Posts", {
+    await queryInterface.createTable("Email_Tamplastes", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,29 +11,15 @@ module.exports = {
       },
       id_business: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
-      id_job: {
+      name: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
-      expire: {
-        type: Sequelize.DATE,
-      },
-      step1: {
-        type: Sequelize.INTEGER,
-      },
-      step2: {
-        type: Sequelize.INTEGER,
-      },
-      step3: {
-        type: Sequelize.INTEGER,
-      },
-      step4: {
-        type: Sequelize.INTEGER,
-      },
-      step5: {
-        type: Sequelize.INTEGER,
+      content: {
+        allowNull: false,
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Posts");
+    await queryInterface.dropTable("Email_Tamplastes");
   },
 };

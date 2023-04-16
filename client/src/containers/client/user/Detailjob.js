@@ -1,175 +1,151 @@
-import { Button, Nav } from "../../../components";
+import { Button, Footer, Nav } from "../../../components";
 import hinh from "../../../assets/image/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { path } from "../../../utils/constant";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as fullHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { getBusinessById } from "../../../store/apiRequests";
 function Detailjob() {
+  const job = useSelector((state) => state.job.current);
+  console.log("job: ", job);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const index = job.Post.createdAt.indexOf("T");
+  const date = job.Post.createdAt.slice(0, index);
+  const [like, setLike] = useState(true);
+  const handleChoose = (id) => {
+    getBusinessById(id, dispatch, navigate);
+  };
+  const des = job.des.split("\n");
+  const request = job.request.split("\n");
   return (
-    <div className="w-1360 mx-auto">
+    <div className="relative">
       <Nav />
-      <div className="mt-20 h-auto grid grid-cols-3 gap-4">
-        <div className="w-full col-span-2 ">
-          <div className="flex flex-wrap px-10 ">
-            <p className="w-full mb-3">Ten cong viec</p>
-            <div className="flex w-full justify-between border-b py-5">
-              <Link to={path.APPLY} className="w-11/12 mr-3">
-                <Button className="w-full h-8" text="Ứng tuyển" />
-              </Link>
-              <Button
-                className="w-1/12 h-8 text-center my-auto border-none"
-                text={
-                  <FontAwesomeIcon
-                    icon={false ? fullHeart : solidHeart}
-                    className="w-full h-full"
-                  />
-                }
-              />
-            </div>
-          </div>
-          <div className="grid grid-rows-4 gap-2 px-10 mt-3">
-            <div className="w-full">ds ngôn ngữ</div>
-            <div className="w-full">Luong</div>
-            <div className="w-full">địa chỉ</div>
-            <div className="w-full">thời gian đăng</div>
-          </div>
-          <div className="border-b mx-10 mt-3"></div>
-          <div className="flex px-10 mt-2">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a
-              eros sapien. Praesent dolor urna, ullamcorper vel erat ut, commodo
-              pharetra turpis. Integer et tempus mi. Sed gravida sollicitudin
-              tellus, lobortis egestas lectus mattis ut. Integer luctus mauris
-              sit amet ipsum eleifend, vel imperdiet sapien rhoncus. Aliquam at
-              neque vitae velit pharetra luctus a in felis. Nullam sit amet
-              mauris aliquam, faucibus tellus a, hendrerit diam. Vivamus iaculis
-              lacinia velit, a euismod mauris molestie sed. Mauris nec porttitor
-              neque, a dapibus est. Vivamus quis eros gravida, commodo lacus
-              quis, imperdiet eros. Morbi ac metus enim. Pellentesque ex augue,
-              laoreet et faucibus at, eleifend at diam. Etiam ultrices imperdiet
-              ante, at laoreet urna fermentum vel. Sed eleifend porttitor neque,
-              nec tincidunt sem tincidunt vel. Suspendisse ultrices ut nibh eu
-              feugiat. Etiam at placerat mi. Nulla suscipit tristique posuere.
-              Ut luctus mi non enim efficitur pulvinar. Fusce malesuada laoreet
-              quam non porttitor.
-            </div>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a
-              eros sapien. Praesent dolor urna, ullamcorper vel erat ut, commodo
-              pharetra turpis. Integer et tempus mi. Sed gravida sollicitudin
-              tellus, lobortis egestas lectus mattis ut. Integer luctus mauris
-              sit amet ipsum eleifend, vel imperdiet sapien rhoncus. Aliquam at
-              neque vitae velit pharetra luctus a in felis. Nullam sit amet
-              mauris aliquam, faucibus tellus a, hendrerit diam. Vivamus iaculis
-              lacinia velit, a euismod mauris molestie sed. Mauris nec porttitor
-              neque, a dapibus est. Vivamus quis eros gravida, commodo lacus
-              quis, imperdiet eros. Morbi ac metus enim. Pellentesque ex augue,
-              laoreet et faucibus at, eleifend at diam. Etiam ultrices imperdiet
-              ante, at laoreet urna fermentum vel. Sed eleifend porttitor neque,
-              nec tincidunt sem tincidunt vel. Suspendisse ultrices ut nibh eu
-              feugiat. Etiam at placerat mi. Nulla suscipit tristique posuere.
-              Ut luctus mi non enim efficitur pulvinar. Fusce malesuada laoreet
-              quam non porttitor.
-            </div>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a
-              eros sapien. Praesent dolor urna, ullamcorper vel erat ut, commodo
-              pharetra turpis. Integer et tempus mi. Sed gravida sollicitudin
-              tellus, lobortis egestas lectus mattis ut. Integer luctus mauris
-              sit amet ipsum eleifend, vel imperdiet sapien rhoncus. Aliquam at
-              neque vitae velit pharetra luctus a in felis. Nullam sit amet
-              mauris aliquam, faucibus tellus a, hendrerit diam. Vivamus iaculis
-              lacinia velit, a euismod mauris molestie sed. Mauris nec porttitor
-              neque, a dapibus est. Vivamus quis eros gravida, commodo lacus
-              quis, imperdiet eros. Morbi ac metus enim. Pellentesque ex augue,
-              laoreet et faucibus at, eleifend at diam. Etiam ultrices imperdiet
-              ante, at laoreet urna fermentum vel. Sed eleifend porttitor neque,
-              nec tincidunt sem tincidunt vel. Suspendisse ultrices ut nibh eu
-              feugiat. Etiam at placerat mi. Nulla suscipit tristique posuere.
-              Ut luctus mi non enim efficitur pulvinar. Fusce malesuada laoreet
-              quam non porttitor.
-            </div>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a
-              eros sapien. Praesent dolor urna, ullamcorper vel erat ut, commodo
-              pharetra turpis. Integer et tempus mi. Sed gravida sollicitudin
-              tellus, lobortis egestas lectus mattis ut. Integer luctus mauris
-              sit amet ipsum eleifend, vel imperdiet sapien rhoncus. Aliquam at
-              neque vitae velit pharetra luctus a in felis. Nullam sit amet
-              mauris aliquam, faucibus tellus a, hendrerit diam. Vivamus iaculis
-              lacinia velit, a euismod mauris molestie sed. Mauris nec porttitor
-              neque, a dapibus est. Vivamus quis eros gravida, commodo lacus
-              quis, imperdiet eros. Morbi ac metus enim. Pellentesque ex augue,
-              laoreet et faucibus at, eleifend at diam. Etiam ultrices imperdiet
-              ante, at laoreet urna fermentum vel. Sed eleifend porttitor neque,
-              nec tincidunt sem tincidunt vel. Suspendisse ultrices ut nibh eu
-              feugiat. Etiam at placerat mi. Nulla suscipit tristique posuere.
-              Ut luctus mi non enim efficitur pulvinar. Fusce malesuada laoreet
-              quam non porttitor.
-            </div>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a
-              eros sapien. Praesent dolor urna, ullamcorper vel erat ut, commodo
-              pharetra turpis. Integer et tempus mi. Sed gravida sollicitudin
-              tellus, lobortis egestas lectus mattis ut. Integer luctus mauris
-              sit amet ipsum eleifend, vel imperdiet sapien rhoncus. Aliquam at
-              neque vitae velit pharetra luctus a in felis. Nullam sit amet
-              mauris aliquam, faucibus tellus a, hendrerit diam. Vivamus iaculis
-              lacinia velit, a euismod mauris molestie sed. Mauris nec porttitor
-              neque, a dapibus est. Vivamus quis eros gravida, commodo lacus
-              quis, imperdiet eros. Morbi ac metus enim. Pellentesque ex augue,
-              laoreet et faucibus at, eleifend at diam. Etiam ultrices imperdiet
-              ante, at laoreet urna fermentum vel. Sed eleifend porttitor neque,
-              nec tincidunt sem tincidunt vel. Suspendisse ultrices ut nibh eu
-              feugiat. Etiam at placerat mi. Nulla suscipit tristique posuere.
-              Ut luctus mi non enim efficitur pulvinar. Fusce malesuada laoreet
-              quam non porttitor.
-            </div>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a
-              eros sapien. Praesent dolor urna, ullamcorper vel erat ut, commodo
-              pharetra turpis. Integer et tempus mi. Sed gravida sollicitudin
-              tellus, lobortis egestas lectus mattis ut. Integer luctus mauris
-              sit amet ipsum eleifend, vel imperdiet sapien rhoncus. Aliquam at
-              neque vitae velit pharetra luctus a in felis. Nullam sit amet
-              mauris aliquam, faucibus tellus a, hendrerit diam. Vivamus iaculis
-              lacinia velit, a euismod mauris molestie sed. Mauris nec porttitor
-              neque, a dapibus est. Vivamus quis eros gravida, commodo lacus
-              quis, imperdiet eros. Morbi ac metus enim. Pellentesque ex augue,
-              laoreet et faucibus at, eleifend at diam. Etiam ultrices imperdiet
-              ante, at laoreet urna fermentum vel. Sed eleifend porttitor neque,
-              nec tincidunt sem tincidunt vel. Suspendisse ultrices ut nibh eu
-              feugiat. Etiam at placerat mi. Nulla suscipit tristique posuere.
-              Ut luctus mi non enim efficitur pulvinar. Fusce malesuada laoreet
-              quam non porttitor.
-            </div>
-          </div>
-        </div>
-        <div className="w-full">
-          <div className="w-full flex flex-wrap border p-4">
-            <div className="w-full flex flex-col items-center">
-              <div className="h-170 flex items-center">
-                <img src={hinh} alt="logo" />
+      <div className="w-full bg-phu pb-72">
+        <div className="pt-70 w-1360 mx-auto bg-chu2 ">
+          <div className="mt-3 h-auto grid grid-cols-3 gap-4">
+            <div className="w-full col-span-2 ">
+              <div className="flex flex-wrap px-10 ">
+                <p className="w-full mb-2 text-big font-bold">{job.name}</p>
+                <div className="flex w-full justify-between border-b py-5">
+                  <Link to={path.APPLY} className="w-11/12 mr-3">
+                    <Button
+                      className="w-full h-9 bg-button text-chu2"
+                      text="Ứng tuyển"
+                    />
+                  </Link>
+                  <div
+                    onClick={() => {
+                      setLike(!like);
+                    }}
+                    className=" h-9 px-2 rounded"
+                  >
+                    <Button
+                      className="w-full h-full text-center my-auto border-none"
+                      text={
+                        <FontAwesomeIcon
+                          icon={like ? fullHeart : solidHeart}
+                          className="w-full h-full "
+                          style={{ color: "rgb(234, 30, 48)" }}
+                        />
+                      }
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="my-2">
-                <p>tên công ty</p>
+              <div className="grid grid-rows-4 gap-2 px-10 mt-3">
+                <div className="w-full flex">
+                  {job.Languages.map((e, i) => {
+                    return (
+                      <p className="w-20 mr-5 border text-center" key={i}>
+                        {e.name}
+                      </p>
+                    );
+                  })}
+                </div>
+                <div className="w-full">
+                  {job.salary.toLocaleString("it-IT", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </div>
+                <div className="w-full">
+                  {job.Addresses.map((e, i) => {
+                    return (
+                      <p className="w-full mr-5 " key={i}>
+                        {e.street +
+                          ", " +
+                          e.ward +
+                          ", " +
+                          e.district +
+                          ", " +
+                          e.city}
+                      </p>
+                    );
+                  })}
+                </div>
+                <div className="w-full">{date}</div>
+              </div>
+              <div className="border-b mx-10 mt-3"></div>
+              <div className="flex flex-col px-10 mt-2">
+                <div className="mb-3">
+                  <b>Mô tả công việc</b>
+                  <div className="pl-5">
+                    {des.map((e, i) => {
+                      return <li key={i}>{e}</li>;
+                    })}
+                  </div>
+                </div>
+                <div className="mb-3">
+                  <b>Yêu cầu công việc</b>
+                  <div className="pl-5">
+                    {request.map((e, i) => {
+                      return <li key={i}>{e}</li>;
+                    })}
+                  </div>
+                </div>
+                <div>
+                  <b>Quyền lợi khi vào công ty</b>
+                </div>
               </div>
             </div>
-            <div className="w-full my-2 grid grid-cols-2">
-              <div className="h-8">số lượng nhân sự</div>
-              <div>khu vực</div>
-              <div className="h-8">Link Trang web</div>
-              <div>bản đồ</div>
-            </div>
-            <div className="w-full my-2 flex justify-center">
-              <Link to={path.DETAILB}>
-                <Button text="Về chúng tôi" className="p-2" />
-              </Link>
+            <div className="w-full">
+              <div className=" flex flex-wrap  m-4">
+                <div className="w-full flex flex-col items-center">
+                  <div className="h-170 flex items-center">
+                    <img src={job.Post.Business.url} alt="logo" />
+                  </div>
+                  <div className="my-2">
+                    <p>{job.Post.Business.name}</p>
+                  </div>
+                </div>
+                {/* <div className="w-full my-2 grid grid-cols-2 text-center">
+                  <div className="h-8">số lượng nhân sự</div>
+                  <div className="">khu vực</div>
+                  <div className="h-8">Link Trang web</div>
+                  <div className="">bản đồ</div>
+                </div> */}
+                <div className="w-full my-2 flex justify-center">
+                  <div
+                    onClick={() => {
+                      handleChoose(job.Post.Business.id);
+                    }}
+                  >
+                    <Button
+                      text="Về chúng tôi"
+                      className="p-2 bg-button text-chu2 px-4"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

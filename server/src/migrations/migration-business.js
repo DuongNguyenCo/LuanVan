@@ -9,10 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      id_service: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       name: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -32,18 +28,6 @@ module.exports = {
       },
       url: {
         type: Sequelize.TEXT,
-      },
-      street: {
-        type: Sequelize.STRING,
-      },
-      ward: {
-        type: Sequelize.STRING,
-      },
-      district: {
-        type: Sequelize.STRING,
-      },
-      city: {
-        type: Sequelize.STRING,
       },
       password: {
         allowNull: false,

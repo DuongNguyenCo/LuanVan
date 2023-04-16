@@ -1,7 +1,40 @@
+require("dotenv").config();
 import db from "../models/index";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { hashPassword } from "./CRUD_User";
+import { v2 as cloudinary } from "cloudinary";
+import { Op, Sequelize } from "sequelize";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+let uploadCloud = (image, fname) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await cloudinary.uploader.upload(
+        image,
+        {
+          overwrite: true,
+          invalidate: true,
+          resource_type: "raw",
+          public_id: `logo/business/${fname}`,
+        },
+        (err, result) => {
+          if (err) console.log(err);
+          if (result) {
+            resolve(result);
+          }
+        }
+      );
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 let login = (business) => {
   return new Promise(async (resolve, reject) => {
@@ -20,8 +53,7 @@ let login = (business) => {
           resolve({
             errCode: 0,
             errMessage: "Login Successfully",
-            data: other,
-            token: token,
+            data: { other, token },
           });
         } else {
           resolve({
@@ -41,27 +73,26 @@ let login = (business) => {
   });
 };
 
-let getAll = (page = 1) => {
+let getAll = (page = 1, limit = 5) => {
   return new Promise(async (resolve, reject) => {
     try {
       page = page * 1;
-      const limit = 5;
-      let data = await db.Business.findAll({
-        attributes: [
-          "id",
-          "name",
-          "email",
-          "phone",
-          "des",
-          "url",
-          "street",
-          "ward",
-          "district",
-          "city",
+      limit = limit * 1;
+      const data = await db.Business.findAll({
+        attributes: ["id", "name", "url"],
+        include: [
+          {
+            model: db.Address,
+            attributes: ["street", "ward", "district", "city"],
+          },
+          {
+            model: db.Post,
+            attributes: ["id"],
+          },
         ],
+        nest: true,
         limit: limit,
         offset: (page - 1) * limit,
-        raw: true,
       });
       resolve({
         errCode: 0,
@@ -77,17 +108,33 @@ let getByID = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Business.findOne({
-        include: [{ model: db.Service }],
+        attributes: ["name", "des", "benefit", "url", "id"],
+        include: [
+          {
+            model: db.Post,
+            attributes: ["id", "createdAt", "expire"],
+            include: [
+              {
+                model: db.Job,
+                attributes: ["id", "name", "salary"],
+                include: [
+                  { model: db.Language, attributes: ["name"] },
+                  { model: db.Address, attributes: ["city"] },
+                ],
+              },
+            ],
+          },
+        ],
         where: { id: id },
-        raw: true,
+        order: [[db.Post, "expire", "DESC"]],
+
         nest: true,
       });
       if (data) {
-        const { password, ...other } = data;
         resolve({
           errCode: 0,
           errMessage: "findOne Successfully",
-          data: other,
+          data,
         });
       } else {
         resolve({
@@ -100,24 +147,67 @@ let getByID = (id) => {
     }
   });
 };
+let getAllService = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let code = await db.Business_Service.findAll({
+        where: { id_business: id },
+        raw: true,
+      });
+      const a = await Promise.all(
+        code.map(async (a) => {
+          const b = await db.Service.findOne({
+            attributes: ["id", "name", "type_service"],
+            where: { id: a.id_service },
+            raw: true,
+          });
+          return { ...b, exprire: a.expire };
+        })
+      );
 
-let create = (busienss) => {
+      resolve({
+        errCode: 0,
+        errMessage: "Find all data",
+        data: a,
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+let create = (business) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Business.findOrCreate({
-        where: { email: busienss?.email },
+        where: { email: business?.email },
         defaults: {
-          id_service: 1,
-          name: busienss?.name,
-          password: busienss?.pass && (await hashPassword(busienss.pass)),
+          name: business?.name,
+          password: business?.pass && (await hashPassword(business.pass)),
         },
       });
       if (data[1]) {
+        await db.Address.create({
+          id_business: data[0].dataValues.id,
+          city: business.city,
+        });
+        let service = await db.Service.findOne({
+          where: { name: "Gói cơ bản" },
+          raw: true,
+        });
+        await db.Business_Service.create({
+          id_service: service.id,
+          id_business: data[0].dataValues.id,
+          expire: 0,
+        });
         const { password, ...other } = data[0].dataValues;
+        const token = jwt.sign({ business: other }, process.env.TOKEN_KEY, {
+          expiresIn: "2h",
+        });
         resolve({
           errCode: 0,
           errMessage: "Create successfully",
-          data: other,
+          data: { other, token },
         });
       } else {
         resolve({
@@ -131,32 +221,27 @@ let create = (busienss) => {
   });
 };
 
-let update = (busienss) => {
+let update = (business) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Business.findOne({
-        where: { email: busienss.email },
-      });
-      if (data) {
-        let dataNew = await db.Business.update(
-          {
-            name: busienss?.name,
-            phone: busienss?.phone,
-            des: busienss?.des,
-            street: busienss?.street,
-            ward: busienss?.ward,
-            district: busienss?.district,
-            city: busienss?.city,
-          },
-          { where: { email: busienss?.email }, raw: true }
-        );
-        if (dataNew[0] > 0) {
-          resolve({ errCode: 0, errMessage: "update successfully" });
-        } else {
-          resolve({ errCode: 1, errMessage: "update failed" });
-        }
+      let resUpload = await uploadCloud(business.url, business.name);
+      let dataNew = await db.Business.update(
+        {
+          name: business.name,
+          phone: business.phone,
+          des: business.des,
+          benefit: business.benefit,
+          url: resUpload.url,
+        },
+        { where: { email: business?.email }, raw: true }
+      );
+      if (dataNew[0] > 0) {
+        let data = await db.Business.findOne({
+          where: { email: business?.email },
+        });
+        resolve({ errCode: 0, errMessage: "update successfully", data });
       } else {
-        resolve({ errCode: -1, errMessage: "Business not found" });
+        resolve({ errCode: 1, errMessage: "update failed" });
       }
     } catch (err) {
       reject(err);
@@ -170,4 +255,5 @@ module.exports = {
   create,
   update,
   login,
+  getAllService,
 };

@@ -10,7 +10,13 @@ let create = async (req, res) => {
   res.status(200).json(data);
 };
 
+let postService = async (req, res) => {
+  let data = await crudPost.postService(req.body);
+  res.status(200).json(data);
+};
+
 module.exports = {
   getAll,
   create,
+  postService,
 };

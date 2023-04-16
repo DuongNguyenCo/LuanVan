@@ -42,10 +42,13 @@ let create = (user) => {
       });
       if (data[1]) {
         const { password, ...other } = data[0].dataValues;
+        const token = jwt.sign({ user: other }, process.env.TOKEN_KEY, {
+          expiresIn: "2h",
+        });
         resolve({
           errCode: 0,
           errMessage: "Create new user successfully",
-          data: other,
+          data: { other, token },
         });
       } else {
         resolve({

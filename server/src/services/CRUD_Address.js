@@ -31,10 +31,10 @@ let create = (address) => {
           where: {
             [Op.and]: [
               { id_business: address.idBusiness },
-              { street: address.street },
-              { ward: address.ward },
-              { district: address.district },
               { city: address.city },
+              { district: address.district },
+              { ward: address.ward },
+              { street: address.street },
             ],
           },
           defaults: {
@@ -68,4 +68,34 @@ let create = (address) => {
   });
 };
 
-module.exports = { create, getAll };
+let update = (address) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await db.Address.update(
+        {
+          district: address.district,
+          ward: address.ward,
+          city: address.city,
+          street: address.street,
+        },
+        {
+          where: {
+            [Op.and]: [
+              { id: address.idAddress },
+              { id_business: address.idBusiness },
+            ],
+          },
+        }
+      );
+      if (data[0] > 0) {
+        resolve({ errCode: 0, errMessage: "update successfully" });
+      } else {
+        resolve({ errCode: 1, errMessage: "update failed" });
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+module.exports = { create, getAll, update };

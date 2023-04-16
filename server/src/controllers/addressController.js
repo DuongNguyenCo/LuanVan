@@ -10,4 +10,9 @@ let getAll = async (req, res) => {
   res.status(200).json(data);
 };
 
-module.exports = { create, getAll };
+let update = async (req, res) => {
+  let data = await crudAddress.update(req.body);
+  res.status(200).json(data);
+};
+
+module.exports = { create, getAll, update };

@@ -3,14 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlile = createSlice({
   name: "user",
   initialState: {
-    candidate: null,
+    candidate: {},
+    isLogin: false,
+    token: "",
   },
   reducers: {
     registerSuccess: (state, action) => {
-      state.candidate = action.payload;
+      console.log(action);
+      state.candidate = action.payload.other;
+      state.isLogin = true;
+      state.token = action.payload.token;
     },
     logoutUser: (state) => {
-      state.candidate = null;
+      state.candidate = {};
+      state.isLogin = false;
+      state.token = "";
     },
   },
 });

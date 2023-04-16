@@ -9,7 +9,7 @@ let app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use("/upload", express.static("./upload"));
 app.use(cors());
 //config
 initWebRoutes(app);

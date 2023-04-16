@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsTo(models.Business, {
         foreignKey: "id_business",
       });
-      Post.belongsTo(models.Job, { foreignKey: "id_job" });
+      Post.belongsTo(models.Job, {
+        foreignKey: "id_job",
+      });
       Post.belongsToMany(models.Candidate, {
         through: models.Candi_Post,
         foreignKey: "id_post",
@@ -16,14 +18,22 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Cv_Post,
         foreignKey: "id_post",
       });
+      Post.belongsToMany(models.Service, {
+        through: models.Post_Service,
+        foreignKey: "id_post",
+      });
     }
   }
   Post.init(
     {
       id_business: DataTypes.INTEGER,
       id_job: DataTypes.INTEGER,
-      name: DataTypes.STRING,
       expire: DataTypes.DATE,
+      step1: DataTypes.INTEGER,
+      step2: DataTypes.INTEGER,
+      step3: DataTypes.INTEGER,
+      step4: DataTypes.INTEGER,
+      step5: DataTypes.INTEGER,
     },
     {
       sequelize,

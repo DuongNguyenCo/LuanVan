@@ -2,24 +2,16 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Candi_Busis", {
-      id_candidate: {
+    await queryInterface.createTable("post_services", {
+      id_service: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      id_business: {
+      id_post: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.FLOAT,
-      },
-      star: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      content: {
-        allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +24,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Candi_Busis");
+    await queryInterface.dropTable("post_services");
   },
 };

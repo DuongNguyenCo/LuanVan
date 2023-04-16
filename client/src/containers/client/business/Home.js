@@ -1,12 +1,15 @@
-// import { Link } from "react-router-dom";
-import { Nav } from "../../../components";
-// import { path } from "../../../utils/constant";
+import { Footer, Nav } from "../../../components";
 function Home() {
   return (
-    <div className="w-1360 mx-auto">
+    <>
       <Nav type="business" />
-      <div className="w-full mt-70">Trang dashboard</div>
-    </div>
+      <div className="w-full bg-phu">
+        <div className="w-1360 mx-auto">
+          <div className="w-full h-screen pt-70">Trang dashboard</div>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 

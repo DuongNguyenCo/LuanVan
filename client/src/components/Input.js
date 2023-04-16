@@ -1,5 +1,5 @@
 function Input(prop) {
-  const { setValue, initValue } = prop;
+  const { setValue, initValue, value } = prop;
 
   return (
     <div className={prop.className || " h-20 w-full"}>
@@ -27,6 +27,7 @@ function Input(prop) {
             [e.target.name]: e.target.value,
           });
         }}
+        value={value !== undefined ? value : undefined}
         autoComplete="off"
       />
     </div>

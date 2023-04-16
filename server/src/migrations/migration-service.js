@@ -13,9 +13,20 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      type_service: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       price: {
         allowNull: false,
         type: Sequelize.INTEGER,
+      },
+      new_post: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+      },
+      hot_post: {
+        type: Sequelize.BOOLEAN,
       },
       count_post: {
         allowNull: false,

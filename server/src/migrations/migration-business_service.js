@@ -2,38 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Posts", {
-      id: {
+    await queryInterface.createTable("business_services", {
+      id_service: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
       id_business: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      id_job: {
-        allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
       expire: {
-        type: Sequelize.DATE,
-      },
-      step1: {
-        type: Sequelize.INTEGER,
-      },
-      step2: {
-        type: Sequelize.INTEGER,
-      },
-      step3: {
-        type: Sequelize.INTEGER,
-      },
-      step4: {
-        type: Sequelize.INTEGER,
-      },
-      step5: {
-        type: Sequelize.INTEGER,
+        allowNull: false,
+        type: Sequelize.BIGINT,
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Posts");
+    await queryInterface.dropTable("business_services");
   },
 };
