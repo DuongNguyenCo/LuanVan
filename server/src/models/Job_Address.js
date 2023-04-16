@@ -1,25 +1,25 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Job_Address extends Model {
+  class job_address extends Model {
     static associate(models) {}
   }
-  Job_Address.init(
+  job_address.init(
     {
       id_job: {
         type: DataTypes.INTEGER,
-        references: { model: "Job", key: "id" },
+        references: { model: "job", key: "id" },
       },
       id_address: {
         type: DataTypes.INTEGER,
-        references: { model: "Address", key: "id" },
+        references: { model: "address", key: "id" },
       },
     },
     {
       sequelize,
-      modelName: "Job_Address",
+      modelName: "job_address",
       name: {},
     }
   );
-  return Job_Address;
+  return job_address;
 };

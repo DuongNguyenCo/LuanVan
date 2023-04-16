@@ -10,11 +10,10 @@ import { useState } from "react";
 import { getBusinessById } from "../../../store/apiRequests";
 function Detailjob() {
   const job = useSelector((state) => state.job.current);
-  console.log("job: ", job);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const index = job.Post.createdAt.indexOf("T");
-  const date = job.Post.createdAt.slice(0, index);
+  const index = job.post.createdAt.indexOf("T");
+  const date = job.post.createdAt.slice(0, index);
   const [like, setLike] = useState(true);
   const handleChoose = (id) => {
     getBusinessById(id, dispatch, navigate);
@@ -58,7 +57,7 @@ function Detailjob() {
               </div>
               <div className="grid grid-rows-4 gap-2 px-10 mt-3">
                 <div className="w-full flex">
-                  {job.Languages.map((e, i) => {
+                  {job.languages.map((e, i) => {
                     return (
                       <p className="w-20 mr-5 border text-center" key={i}>
                         {e.name}
@@ -73,7 +72,7 @@ function Detailjob() {
                   })}
                 </div>
                 <div className="w-full">
-                  {job.Addresses.map((e, i) => {
+                  {job.addresses.map((e, i) => {
                     return (
                       <p className="w-full mr-5 " key={i}>
                         {e.street +
@@ -116,10 +115,10 @@ function Detailjob() {
               <div className=" flex flex-wrap  m-4">
                 <div className="w-full flex flex-col items-center">
                   <div className="h-170 flex items-center">
-                    <img src={job.Post.Business.url} alt="logo" />
+                    <img src={job.post.business.url} alt="logo" />
                   </div>
                   <div className="my-2">
-                    <p>{job.Post.Business.name}</p>
+                    <p>{job.post.business.name}</p>
                   </div>
                 </div>
                 {/* <div className="w-full my-2 grid grid-cols-2 text-center">
@@ -131,7 +130,7 @@ function Detailjob() {
                 <div className="w-full my-2 flex justify-center">
                   <div
                     onClick={() => {
-                      handleChoose(job.Post.Business.id);
+                      handleChoose(job.post.business.id);
                     }}
                   >
                     <Button

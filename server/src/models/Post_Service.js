@@ -1,25 +1,25 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Post_Service extends Model {
+  class post_service extends Model {
     static associate(models) {}
   }
-  Post_Service.init(
+  post_service.init(
     {
       id_service: {
         type: DataTypes.INTEGER,
-        references: { model: "Service", key: "id" },
+        references: { model: "service", key: "id" },
       },
       id_post: {
         type: DataTypes.INTEGER,
-        references: { model: "Post", key: "id" },
+        references: { model: "post", key: "id" },
       },
     },
     {
       sequelize,
-      modelName: "Post_Service",
+      modelName: "post_service",
       name: {},
     }
   );
-  return Post_Service;
+  return post_service;
 };

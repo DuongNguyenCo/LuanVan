@@ -86,16 +86,17 @@ function Findjob() {
             </div>
             <div className="w-9/12 grid grid-cols-2 gap-4">
               {job?.map((e) => {
+                console.log("e: ", e);
                 return (
                   <DivFindJ
                     key={e.id}
                     id={e.id}
-                    url={e.Business.url}
-                    nameBusiness={e.Business.name}
-                    nameJob={e.Job.name}
-                    listLanguage={e.Job.Languages}
-                    listLocation={e.Job.Addresses}
-                    salary={e.Job.salary}
+                    url={e.business.url}
+                    nameBusiness={e.business.name}
+                    nameJob={e.job.name}
+                    listLanguage={e.job.languages}
+                    listLocation={e.job.addresses}
+                    salary={e.job.salary}
                     create={e.createdAt}
                     onClick={handleChoose}
                   />

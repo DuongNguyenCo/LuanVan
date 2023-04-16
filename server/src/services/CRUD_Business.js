@@ -39,7 +39,7 @@ let uploadCloud = (image, fname) => {
 let login = (business) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Business.findOne({
+      let data = await db.business.findOne({
         where: { email: business.email },
         raw: true,
       });
@@ -78,15 +78,15 @@ let getAll = (page = 1, limit = 5) => {
     try {
       page = page * 1;
       limit = limit * 1;
-      const data = await db.Business.findAll({
+      const data = await db.business.findAll({
         attributes: ["id", "name", "url"],
         include: [
           {
-            model: db.Address,
+            model: db.address,
             attributes: ["street", "ward", "district", "city"],
           },
           {
-            model: db.Post,
+            model: db.post,
             attributes: ["id"],
           },
         ],
@@ -107,26 +107,26 @@ let getAll = (page = 1, limit = 5) => {
 let getByID = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Business.findOne({
+      let data = await db.business.findOne({
         attributes: ["name", "des", "benefit", "url", "id"],
         include: [
           {
-            model: db.Post,
+            model: db.post,
             attributes: ["id", "createdAt", "expire"],
             include: [
               {
-                model: db.Job,
+                model: db.job,
                 attributes: ["id", "name", "salary"],
                 include: [
-                  { model: db.Language, attributes: ["name"] },
-                  { model: db.Address, attributes: ["city"] },
+                  { model: db.language, attributes: ["name"] },
+                  { model: db.address, attributes: ["city"] },
                 ],
               },
             ],
           },
         ],
         where: { id: id },
-        order: [[db.Post, "expire", "DESC"]],
+        order: [[db.post, "expire", "DESC"]],
 
         nest: true,
       });
@@ -150,13 +150,13 @@ let getByID = (id) => {
 let getAllService = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let code = await db.Business_Service.findAll({
+      let code = await db.business_service.findAll({
         where: { id_business: id },
         raw: true,
       });
       const a = await Promise.all(
         code.map(async (a) => {
-          const b = await db.Service.findOne({
+          const b = await db.service.findOne({
             attributes: ["id", "name", "type_service"],
             where: { id: a.id_service },
             raw: true,
@@ -179,7 +179,7 @@ let getAllService = (id) => {
 let create = (business) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Business.findOrCreate({
+      let data = await db.business.findOrCreate({
         where: { email: business?.email },
         defaults: {
           name: business?.name,
@@ -187,15 +187,15 @@ let create = (business) => {
         },
       });
       if (data[1]) {
-        await db.Address.create({
+        await db.address.create({
           id_business: data[0].dataValues.id,
           city: business.city,
         });
-        let service = await db.Service.findOne({
+        let service = await db.service.findOne({
           where: { name: "Gói cơ bản" },
           raw: true,
         });
-        await db.Business_Service.create({
+        await db.business_service.create({
           id_service: service.id,
           id_business: data[0].dataValues.id,
           expire: 0,
@@ -225,7 +225,7 @@ let update = (business) => {
   return new Promise(async (resolve, reject) => {
     try {
       let resUpload = await uploadCloud(business.url, business.name);
-      let dataNew = await db.Business.update(
+      let dataNew = await db.business.update(
         {
           name: business.name,
           phone: business.phone,
@@ -236,7 +236,7 @@ let update = (business) => {
         { where: { email: business?.email }, raw: true }
       );
       if (dataNew[0] > 0) {
-        let data = await db.Business.findOne({
+        let data = await db.business.findOne({
           where: { email: business?.email },
         });
         resolve({ errCode: 0, errMessage: "update successfully", data });

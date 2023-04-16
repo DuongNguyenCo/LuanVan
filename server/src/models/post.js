@@ -1,30 +1,29 @@
 "use strict";
 const { Model } = require("sequelize");
-const candidate = require("./Candidate");
 module.exports = (sequelize, DataTypes) => {
-  class Post extends Model {
+  class post extends Model {
     static associate(models) {
-      Post.belongsTo(models.Business, {
+      post.belongsTo(models.business, {
         foreignKey: "id_business",
       });
-      Post.belongsTo(models.Job, {
+      post.belongsTo(models.job, {
         foreignKey: "id_job",
       });
-      Post.belongsToMany(models.Candidate, {
-        through: models.Candi_Post,
+      post.belongsToMany(models.candidate, {
+        through: models.candi_post,
         foreignKey: "id_post",
       });
-      Post.belongsToMany(models.Cv, {
-        through: models.Cv_Post,
+      post.belongsToMany(models.cv, {
+        through: models.cv_post,
         foreignKey: "id_post",
       });
-      Post.belongsToMany(models.Service, {
-        through: models.Post_Service,
+      post.belongsToMany(models.service, {
+        through: models.post_service,
         foreignKey: "id_post",
       });
     }
   }
-  Post.init(
+  post.init(
     {
       id_business: DataTypes.INTEGER,
       id_job: DataTypes.INTEGER,
@@ -37,8 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Post",
+      modelName: "post",
     }
   );
-  return Post;
+  return post;
 };

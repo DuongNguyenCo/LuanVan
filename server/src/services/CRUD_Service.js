@@ -3,7 +3,7 @@ import db from "../models/index";
 let getByBusiness = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Service.findAll({
+      let data = await db.service.findAll({
         raw: true,
       });
       resolve({

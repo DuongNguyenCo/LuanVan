@@ -2,23 +2,23 @@
 const { Model } = require("sequelize");
 const language = require("./Language");
 module.exports = (sequelize, DataTypes) => {
-  class Job extends Model {
+  class job extends Model {
     static associate(models) {
-      Job.belongsTo(models.Typejob, {
+      job.belongsTo(models.typejob, {
         foreignKey: "id_job_type",
       });
-      Job.hasOne(models.Post, { foreignKey: "id_job" });
-      Job.belongsToMany(models.Language, {
-        through: models.Job_Language,
+      job.hasOne(models.post, { foreignKey: "id_job" });
+      job.belongsToMany(models.language, {
+        through: models.job_language,
         foreignKey: "id_job",
       });
-      Job.belongsToMany(models.Address, {
-        through: models.Job_Address,
+      job.belongsToMany(models.address, {
+        through: models.job_address,
         foreignKey: "id_job",
       });
     }
   }
-  Job.init(
+  job.init(
     {
       id_job_type: DataTypes.INTEGER,
       name: DataTypes.STRING,
@@ -29,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Job",
+      modelName: "job",
     }
   );
-  return Job;
+  return job;
 };

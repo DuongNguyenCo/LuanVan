@@ -1,21 +1,21 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Typejob extends Model {
+  class typejob extends Model {
     static associate(models) {
-      Typejob.hasMany(models.Job, {
+      typejob.hasMany(models.job, {
         foreignKey: "id_job_type",
       });
     }
   }
-  Typejob.init(
+  typejob.init(
     {
       name: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Typejob",
+      modelName: "typejob",
     }
   );
-  return Typejob;
+  return typejob;
 };

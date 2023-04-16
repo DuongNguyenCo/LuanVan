@@ -129,7 +129,7 @@ function Nav(prop) {
                 </Link>
               </div>
               <div className="flex justify-end w-6/12">
-                <Link to={path.BLOGIN}>
+                <Link to={path.BUSINESS}>
                   <div className="leading-70 px-2 text-chu1">
                     DÀNH CHO NHÀ TUYỂN DỤNG
                   </div>

@@ -19,7 +19,6 @@ function Home() {
   const [job, setJob] = useState([]);
   const [page, setPage] = useState(1);
   const [pageJob, setPageJob] = useState(1);
-  const user = localStorage.getItem("user");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -73,8 +72,8 @@ function Home() {
               <div className="w-full flex">
                 {data?.map((data) => {
                   console.log("data: ", data);
-                  const b = data.Posts.length;
-                  let a = data.Addresses[0]?.city.split(" ");
+                  const b = data.posts.length;
+                  let a = data.addresses[0]?.city.split(" ");
                   if (a && a[0] === "Tỉnh") {
                     a = a?.slice(1);
                     a = a?.join(" ");
@@ -117,10 +116,10 @@ function Home() {
                     <Divjob
                       key={data.id}
                       id={data.id}
-                      url={data.Business.url}
-                      nameBusiness={data.Business.name}
-                      nameJob={data.Job.name}
-                      listLanguage={data.Job.Languages}
+                      url={data.business.url}
+                      nameBusiness={data.business.name}
+                      nameJob={data.job.name}
+                      listLanguage={data.job.languages}
                       onClick={handleChoose}
                     />
                   );

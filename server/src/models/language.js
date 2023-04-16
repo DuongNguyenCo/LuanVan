@@ -1,23 +1,22 @@
 "use strict";
 const { Model } = require("sequelize");
-const job = require("./Job");
 module.exports = (sequelize, DataTypes) => {
-  class Language extends Model {
+  class language extends Model {
     static associate(models) {
-      Language.belongsToMany(models.Job, {
-        through: models.Job_Language,
+      language.belongsToMany(models.job, {
+        through: models.job_language,
         foreignKey: "id_language",
       });
     }
   }
-  Language.init(
+  language.init(
     {
       name: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Language",
+      modelName: "language",
     }
   );
-  return Language;
+  return language;
 };

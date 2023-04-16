@@ -12,15 +12,15 @@ let create = (job) => {
         const newAddress = a.id;
         return newAddress;
       });
-      const address = await db.Address.findAll({
+      const address = await db.address.findAll({
         where: { id: configAddress || "" },
         raw: true,
       });
-      const language = await db.Language.findAll({
+      const language = await db.language.findAll({
         where: { id: configLanguage || "" },
         raw: true,
       });
-      const data = await db.Job.findOrCreate({
+      const data = await db.job.findOrCreate({
         where: { name: job.name },
         defaults: {
           id_job_type: job.idTypeJob,
@@ -34,14 +34,14 @@ let create = (job) => {
       if (data[1]) {
         language &&
           language.map(async (a) => {
-            await db.Job_Language.create({
+            await db.job_language.create({
               id_job: data[0].dataValues.id,
               id_language: a.id,
             });
           });
         address &&
           address.map(async (a) => {
-            await db.Job_Address.create({
+            await db.job_address.create({
               id_job: data[0].dataValues.id,
               id_address: a.id,
             });
@@ -71,16 +71,16 @@ let getAll = (query) => {
     try {
       const page = query.page * 1 || 1 * 1;
       const limit = query.limit * 1 || 9 * 1;
-      let data = await db.Post.findAll({
+      let data = await db.post.findAll({
         attributes: ["id", "id_business", "id_job", "expire", "createdAt"],
         include: [
-          { model: db.Business, attributes: ["name", "url", "id"] },
+          { model: db.business, attributes: ["name", "url", "id"] },
           {
-            model: db.Job,
+            model: db.job,
             attributes: ["id", "name", "salary"],
             include: [
-              { model: db.Language, attributes: ["name"] },
-              { model: db.Address, attributes: ["city"] },
+              { model: db.language, attributes: ["name"] },
+              { model: db.address, attributes: ["city"] },
             ],
           },
         ],
@@ -103,22 +103,22 @@ let getAll = (query) => {
 let getById = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Job.findOne({
+      let data = await db.job.findOne({
         attributes: ["salary", "des", "request", "quantity", "name"],
         include: [
-          { model: db.Language, attributes: ["name"] },
+          { model: db.language, attributes: ["name"] },
           {
-            model: db.Post,
+            model: db.post,
             attributes: ["createdAt"],
             include: [
               {
-                model: db.Business,
+                model: db.business,
                 attributes: ["name", "url", "id", "benefit"],
               },
             ],
           },
           {
-            model: db.Address,
+            model: db.address,
             attributes: ["street", "ward", "district", "city"],
           },
         ],
@@ -137,15 +137,15 @@ let getByBusiness = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       console.log("id: ", id);
-      const data = await db.Post.findAll({
+      const data = await db.post.findAll({
         attributes: ["expire", "id"],
         include: [
           {
-            model: db.Job,
+            model: db.job,
             attributes: ["name"],
-            include: [{ model: db.Address }],
+            include: [{ model: db.address }],
           },
-          { model: db.Service },
+          { model: db.service },
         ],
         nest: true,
       });

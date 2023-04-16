@@ -1,5 +1,16 @@
+import { useEffect } from "react";
 import { Footer, Nav } from "../../../components";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { path } from "../../../utils/constant";
 function Home() {
+  const busienss = useSelector((state) => state.business.business?.id);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!busienss) {
+      navigate(path.BLOGIN);
+    }
+  }, [busienss, navigate]);
   return (
     <>
       <Nav type="business" />

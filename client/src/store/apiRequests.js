@@ -229,6 +229,7 @@ export const getBusinessById = async (idBusiness, dispatch, navigate) => {
   try {
     dispatch(loading());
     const data = await axios.get(`/api/business/get-by-id/${idBusiness}`);
+    console.log("data: ", data);
     if (data.data.errCode === 0) {
       dispatch(success());
       dispatch(setBusiness(data.data.data));

@@ -3,7 +3,7 @@ import db from "../models/index";
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Typejob.findAll({
+      let data = await db.typejob.findAll({
         raw: true,
       });
       resolve({

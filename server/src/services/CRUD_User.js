@@ -8,7 +8,7 @@ const saltRounds = 10;
 let getByID = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Candidate.findOne({ where: { id: id }, raw: true });
+      let data = await db.candidate.findOne({ where: { id: id }, raw: true });
       if (data) {
         const { password, ...other } = data;
         resolve({
@@ -31,7 +31,7 @@ let getByID = (id) => {
 let create = (user) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Candidate.findOrCreate({
+      let data = await db.candidate.findOrCreate({
         where: { email: user.email },
         defaults: {
           first_name: user?.first_name,
@@ -65,7 +65,7 @@ let create = (user) => {
 let login = (user) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Candidate.findOne({
+      let data = await db.candidate.findOne({
         where: { email: user.email },
         raw: true,
       });
@@ -102,14 +102,12 @@ let login = (user) => {
 let update = (user) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Candidate.findOne({
+      let data = await db.candidate.findOne({
         where: { email: user.email },
         raw: true,
       });
-
-      console.log("data: ", data);
       if (data) {
-        let dataNew = await db.Candidate.update(
+        let dataNew = await db.candidate.update(
           {
             first_name: user?.first_name,
             last_name: user?.last_name,

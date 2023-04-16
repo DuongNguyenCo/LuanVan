@@ -1,24 +1,24 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Candi_Post extends Model {
+  class candi_post extends Model {
     static associate(models) {}
   }
-  Candi_Post.init(
+  candi_post.init(
     {
       id_candidate: {
         type: DataTypes.INTEGER,
-        references: { model: "Candidate", key: "id " },
+        references: { model: "candidate", key: "id " },
       },
       id_post: {
         type: DataTypes.INTEGER,
-        references: { model: "Post", key: "id " },
+        references: { model: "post", key: "id " },
       },
     },
     {
       sequelize,
-      modelName: "Candi_Post",
+      modelName: "candi_post",
     }
   );
-  return Candi_Post;
+  return candi_post;
 };

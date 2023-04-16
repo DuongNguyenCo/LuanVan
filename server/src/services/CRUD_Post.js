@@ -4,11 +4,11 @@ import db from "../models/index";
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Post.findAll({
+      let data = await db.post.findAll({
         include: [
           {
-            model: db.Job,
-            include: [{ model: db.Typejob }],
+            model: db.job,
+            include: [{ model: db.typejob }],
           },
         ],
         raw: true,
@@ -26,7 +26,7 @@ let create = (post) => {
     try {
       const time = new Date();
       const date = new Date(time.getTime() + 30 * 24 * 60 * 60 * 1000);
-      let data = await db.Post.findOrCreate({
+      let data = await db.post.findOrCreate({
         where: {
           id_job: post.idJob,
           id_business: post.idBusiness,
@@ -63,7 +63,7 @@ let postService = (post) => {
   return new Promise(async (resolve, reject) => {
     try {
       const list = post.listService;
-      let data = await db.Post_Service.findAll({
+      let data = await db.post_service.findAll({
         where: { id_post: post.idPost },
         raw: true,
       });
@@ -75,7 +75,7 @@ let postService = (post) => {
         });
       } else {
         list.map(async (service) => {
-          await db.Post_Service.create({
+          await db.post_service.create({
             id_post: post.idPost,
             id_service: service,
           });

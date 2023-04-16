@@ -33,8 +33,8 @@ function Listbusiness() {
                   url={e.url}
                   nameBusiness={e.name}
                   id={e.id}
-                  address={e.Addresses[0]?.city}
-                  count={e.Posts.length}
+                  address={e.addresses[0]?.city}
+                  count={e.posts.length}
                   onClick={handleChoose}
                 />
               );

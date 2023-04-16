@@ -1,20 +1,20 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Service extends Model {
+  class service extends Model {
     static associate(models) {
-      Service.hasMany(models.Receipt, {});
-      Service.belongsToMany(models.Business, {
-        through: models.Business_Service,
+      service.hasMany(models.receipt, {});
+      service.belongsToMany(models.business, {
+        through: models.business_service,
         foreignKey: "id_service",
       });
-      Service.belongsToMany(models.Post, {
-        through: models.Post_Service,
+      service.belongsToMany(models.post, {
+        through: models.post_service,
         foreignKey: "id_service",
       });
     }
   }
-  Service.init(
+  service.init(
     {
       name: DataTypes.STRING,
       type_service: DataTypes.INTEGER,
@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Service",
+      modelName: "service",
     }
   );
-  return Service;
+  return service;
 };

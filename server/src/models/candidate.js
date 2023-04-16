@@ -2,20 +2,20 @@
 const { Model } = require("sequelize");
 const post = require("./Post");
 module.exports = (sequelize, DataTypes) => {
-  class Candidate extends Model {
+  class candidate extends Model {
     static associate(models) {
-      Candidate.hasMany(models.Cv, {});
-      Candidate.belongsToMany(models.Business, {
-        through: models.Candi_Busi,
+      candidate.hasMany(models.cv, {});
+      candidate.belongsToMany(models.business, {
+        through: models.candi_busi,
         foreignKey: "id_candidate",
       });
-      Candidate.belongsToMany(models.Post, {
-        through: models.Candi_Post,
+      candidate.belongsToMany(models.post, {
+        through: models.candi_post,
         foreignKey: "id_candidate",
       });
     }
   }
-  Candidate.init(
+  candidate.init(
     {
       first_name: DataTypes.STRING,
       last_name: DataTypes.STRING,
@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Candidate",
+      modelName: "candidate",
     }
   );
-  return Candidate;
+  return candidate;
 };

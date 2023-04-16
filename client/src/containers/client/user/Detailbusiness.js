@@ -46,17 +46,17 @@ function Detailbusiness() {
             <div className="col-span-2 p-4">
               <div className="w-full mb-2">{business?.name} Tuyển Dụng</div>
               <div className="w-full grid gap-2">
-                {business?.Posts?.map((e) => {
+                {business?.posts?.map((e) => {
                   return (
                     <DivFindJ
                       key={e.id}
                       id={e.id}
                       url={business.url}
-                      nameJob={e.Job.name}
+                      nameJob={e.job.name}
                       create={e.createdAt}
-                      salary={e.Job.salary}
-                      listLanguage={e.Job.Languages}
-                      listLocation={e.Job.Addresses}
+                      salary={e.job.salary}
+                      listLanguage={e.job.languages}
+                      listLocation={e.job.addresses}
                       onClick={handleChoose}
                     />
                   );

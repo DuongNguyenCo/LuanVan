@@ -4,7 +4,7 @@ import db from "../models/index";
 let getAll = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const data = await db.Address.findAll({
+      const data = await db.address.findAll({
         where: { id_business: id },
         raw: true,
       });
@@ -22,11 +22,11 @@ let getAll = (id) => {
 let create = (address) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const business = await db.Business.findOne({
+      const business = await db.business.findOne({
         where: { id: address.idBusiness },
       });
       if (business) {
-        const data = await db.Address.findOrCreate({
+        const data = await db.address.findOrCreate({
           raw: true,
           where: {
             [Op.and]: [
@@ -71,7 +71,7 @@ let create = (address) => {
 let update = (address) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const data = await db.Address.update(
+      const data = await db.address.update(
         {
           district: address.district,
           ward: address.ward,

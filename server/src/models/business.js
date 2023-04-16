@@ -1,29 +1,29 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Business extends Model {
+  class business extends Model {
     static associate(models) {
-      Business.hasMany(models.Post, {
+      business.hasMany(models.post, {
         foreignKey: "id_business",
       });
-      Business.hasMany(models.Receipt, {
+      business.hasMany(models.receipt, {
         as: "receipt",
       });
-      Business.hasMany(models.Address, {
+      business.hasMany(models.address, {
         foreignKey: "id_business",
       });
-      Business.belongsToMany(models.Candidate, {
-        through: models.Candi_Busi,
+      business.belongsToMany(models.candidate, {
+        through: models.candi_busi,
         foreignKey: "id_business",
       });
-      Business.belongsToMany(models.Service, {
-        through: models.Business_Service,
+      business.belongsToMany(models.service, {
+        through: models.business_service,
         foreignKey: "id_business",
       });
-      // Business.belongsTo(models.Service, { foreignKey: "id_service" });
+      // business.belongsTo(models.Service, { foreignKey: "id_service" });
     }
   }
-  Business.init(
+  business.init(
     {
       name: DataTypes.STRING,
       phone: DataTypes.STRING(10),
@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Business",
+      modelName: "business",
     }
   );
-  return Business;
+  return business;
 };
